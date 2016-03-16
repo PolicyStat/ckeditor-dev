@@ -914,8 +914,7 @@
 						}
 
 						if ( joinWith ) {
-							if (range.collapsed && range.startContainer.getName() == 'li') {
-								// do something?
+							if (range.collapsed && range.startContainer.getName() == 'li' && range.startContainer.getParent().getName() in listNodeNames) {
 								mergeChildren(range.startContainer.getParent(), joinWith.getParent());
 								evt.cancel();
 							}
