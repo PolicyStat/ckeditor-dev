@@ -110,6 +110,10 @@ addTests( 'test backspace outdent list item - SHIFT', 'outdent_list', BACKSPACE,
 addTests( 'test del join list items - CTRL', 'join_list1_del', DEL, CKEDITOR.CTRL );
 addTests( 'test del join with next list item - SHIFT', 'merge_next_list', DEL, CKEDITOR.SHIFT );
 
+// word-like backspace behaviour
+addTests( 'test backspace neighboring ol and ul lists', 'backspace_neighboring_lists1', BACKSPACE );
+addTests( 'test backspace neighboring ul and ol lists', 'backspace_neighboring_lists2', BACKSPACE );
+
 function addTests( title, source, key, keyModifiers, assertFn ) {
 	tests[ title + ' (' + source + ')' ] = function() {
 		this.assertBackspace( source, key, keyModifiers, assertFn );
