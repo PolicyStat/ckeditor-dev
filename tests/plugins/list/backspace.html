@@ -762,3 +762,35 @@
 		<li>3</li>
 	</ul>
 </textarea>
+
+<textarea id="backspace_neighboring_nested_lists1">
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<li>c</li>
+	</ol>
+	<ul>
+		<li>
+			<ol>
+				<li>^foo</li>
+				<li>bar</li>
+			</ol>
+		</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	=>
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<li>c</li>
+		<li>
+			<ol>
+				<li>^foo</li>
+				<li>bar</li>
+			</ol>
+		</li>
+		<li>2</li>
+		<li>3</li>
+	</ol>
+</textarea>

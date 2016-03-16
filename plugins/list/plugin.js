@@ -914,8 +914,15 @@
 						}
 
 						if ( joinWith ) {
-							joinNextLineToCursor( editor, cursor, range );
-							evt.cancel();
+							if (range.collapsed && range.startContainer.getName() == 'li') {
+								// do something?
+								mergeChildren(range.startContainer.getParent(), joinWith.getParent());
+								evt.cancel();
+							}
+							else {
+								joinNextLineToCursor(editor, cursor, range);
+								evt.cancel();
+							}
 						}
 						else {
 							var list = path.contains( listNodeNames );

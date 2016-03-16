@@ -113,6 +113,8 @@ addTests( 'test del join with next list item - SHIFT', 'merge_next_list', DEL, C
 // word-like backspace behaviour
 addTests( 'test backspace neighboring ol and ul lists', 'backspace_neighboring_lists1', BACKSPACE );
 addTests( 'test backspace neighboring ul and ol lists', 'backspace_neighboring_lists2', BACKSPACE );
+addTests( 'test backspace nested neighboring lists', 'backspace_neighboring_nested_lists1', BACKSPACE );
+
 
 function addTests( title, source, key, keyModifiers, assertFn ) {
 	tests[ title + ' (' + source + ')' ] = function() {
