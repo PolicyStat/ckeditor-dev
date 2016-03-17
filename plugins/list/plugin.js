@@ -914,15 +914,18 @@
 						}
 
 						if ( joinWith ) {
+							var startItem = range.startContainer;
 							if (
 								range.collapsed &&
-								range.startContainer.getName() == 'li' &&
-								range.startContainer.getParent().getName() in listNodeNames &&
+								startItem.getName() == 'li' &&
+								startItem.getParent().getName() in listNodeNames &&
 								!joinWith.getParent().contains(range.startContainer)
 							) {
-								var oldParent = range.startContainer.getParent();
+								var oldParent = startItem.getParent();
 								mergeChildren(oldParent, joinWith.getParent());
 								oldParent.remove();
+								range.moveToElementEditStart( startItem );
+								range.select();
 
 								evt.cancel();
 							}
