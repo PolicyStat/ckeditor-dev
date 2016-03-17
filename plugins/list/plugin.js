@@ -914,8 +914,16 @@
 						}
 
 						if ( joinWith ) {
-							if (range.collapsed && range.startContainer.getName() == 'li' && range.startContainer.getParent().getName() in listNodeNames) {
-								mergeChildren(range.startContainer.getParent(), joinWith.getParent());
+							if (
+								range.collapsed &&
+								range.startContainer.getName() == 'li' &&
+								range.startContainer.getParent().getName() in listNodeNames &&
+								!joinWith.getParent().contains(range.startContainer)
+							) {
+								var oldParent = range.startContainer.getParent();
+								mergeChildren(oldParent, joinWith.getParent());
+								oldParent.remove();
+
 								evt.cancel();
 							}
 							else {
