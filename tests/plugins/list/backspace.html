@@ -720,14 +720,14 @@
 	</ol>
 </textarea>
 
-<textarea id="backspace_neighboring_lists1">
+<textarea id="delete_neighboring_lists1">
 	<ol>
 		<li>a</li>
 		<li>b</li>
-		<li>c</li>
+		<li>c^</li>
 	</ol>
 	<ul>
-		<li>^1</li>
+		<li>1</li>
 		<li>2</li>
 		<li>3</li>
 	</ul>
@@ -735,20 +735,20 @@
 	<ol>
 		<li>a</li>
 		<li>b</li>
-		<li>c</li>
-		<li>^1</li>
+		<li>c^</li>
+		<li>1</li>
 		<li>2</li>
 		<li>3</li>
 	</ol>
 </textarea>
-<textarea id="backspace_neighboring_lists2">
+<textarea id="delete_neighboring_lists2">
 	<ul>
 		<li>a</li>
 		<li>b</li>
-		<li>c</li>
+		<li>c^</li>
 	</ul>
 	<ol>
-		<li>^1</li>
+		<li>1</li>
 		<li>2</li>
 		<li>3</li>
 	</ol>
@@ -756,23 +756,52 @@
 	<ul>
 		<li>a</li>
 		<li>b</li>
-		<li>c</li>
-		<li>^1</li>
+		<li>c^</li>
+		<li>1</li>
 		<li>2</li>
 		<li>3</li>
 	</ul>
+</textarea>
+<textarea id="delete_neighboring_lists3">
+	<ol>
+		<li>
+			<ul>
+				<li>a</li>
+				<li>b</li>
+				<li>c^</li>
+			</ul>
+			<ol>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ol>
+		</li>
+	</ol>
+	=>
+	<ol>
+		<li>
+			<ul>
+				<li>a</li>
+				<li>b</li>
+				<li>c^</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</li>
+	</ol>
 </textarea>
 
-<textarea id="backspace_neighboring_nested_lists1">
+<textarea id="delete_neighboring_nested_lists1">
 	<ol>
 		<li>a</li>
 		<li>b</li>
-		<li>c</li>
+		<li>c^</li>
 	</ol>
 	<ul>
 		<li>
 			<ol>
-				<li>^foo</li>
+				<li>foo</li>
 				<li>bar</li>
 			</ol>
 		</li>

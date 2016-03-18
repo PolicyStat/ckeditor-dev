@@ -914,25 +914,8 @@
 						}
 
 						if ( joinWith ) {
-							var startItem = range.startContainer;
-							if (
-								range.collapsed &&
-								startItem.getName() == 'li' &&
-								startItem.getParent().getName() in listNodeNames &&
-								!joinWith.getParent().contains(range.startContainer)
-							) {
-								var oldParent = startItem.getParent();
-								mergeChildren(oldParent, joinWith.getParent());
-								oldParent.remove();
-								range.moveToElementEditStart( startItem );
-								range.select();
-
-								evt.cancel();
-							}
-							else {
-								joinNextLineToCursor(editor, cursor, range);
-								evt.cancel();
-							}
+							joinNextLineToCursor(editor, cursor, range);
+							evt.cancel();
 						}
 						else {
 							var list = path.contains( listNodeNames );
@@ -1076,8 +1059,22 @@
 									}
 								}
 
-								joinNextLineToCursor( editor, cursor, nextLine );
-								evt.cancel();
+								var startItem = nextLine.startContainer;
+								if (
+									startItem.type == CKEDITOR.NODE_ELEMENT &&
+									startItem.getName() == 'li' &&
+									startItem.getParent().getName() in listNodeNames &&
+									!li.getParent().contains(startItem)
+								) {
+									var oldParent = startItem.getParent();
+									mergeChildren(oldParent, li.getParent());
+									oldParent.remove();
+									evt.cancel();
+								}
+								else {
+									joinNextLineToCursor(editor, cursor, nextLine);
+									evt.cancel();
+								}
 							}
 						} else {
 							// Handle Del key pressed before the list.
