@@ -1079,7 +1079,7 @@
 									evt.cancel();
 								}
 								else {
-									joinNextLineToCursor(editor, cursor, nextLine);
+									joinNextLineToCursor( editor, cursor, nextLine );
 									evt.cancel();
 								}
 							}
