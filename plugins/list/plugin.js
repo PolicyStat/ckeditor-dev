@@ -914,7 +914,7 @@
 						}
 
 						if ( joinWith ) {
-							joinNextLineToCursor(editor, cursor, range);
+							joinNextLineToCursor( editor, cursor, range );
 							evt.cancel();
 						}
 						else {
@@ -1070,12 +1070,12 @@
 								) {
 									var oldParent = startItem.getParent(),
 										oldRange = nextLine.clone();
-									mergeChildren(oldParent, li.getParent());
+									mergeChildren( oldParent, li.getParent() );
 									// remove the old parent list,
 									// then any ancestors of it that are now left empty.
-									oldRange.moveToPosition(oldParent.getParent(), CKEDITOR.POSITION_AFTER_START);
+									oldRange.moveToPosition( oldParent.getParent(), CKEDITOR.POSITION_AFTER_START );
 									oldParent.remove();
-									oldRange.removeEmptyBlocksAtEnd(true);
+									oldRange.removeEmptyBlocksAtEnd( true );
 									evt.cancel();
 								}
 								else {
