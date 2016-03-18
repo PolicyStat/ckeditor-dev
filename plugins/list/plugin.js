@@ -921,6 +921,15 @@
 									walker.reset();
 									walker.evaluator = isTextBlock;
 									previous = walker.previous();
+
+									// this can be null if the walker started inside a list with no child list items
+									// we know we are in a list, so just add an item
+									if (previous === null) {
+										var listItem = editor.document.createElement( 'li' );
+										previous = walker.range.startContainer;
+										listItem.appendTo( previous );
+										previous = listItem;
+									}
 								}
 
 								joinWith = previous;
