@@ -1059,6 +1059,8 @@
 									}
 								}
 
+								// if we have two neighboring lists, merge the list items from the second
+								// into the first, rather than moving one item at a time.
 								var startItem = nextLine.startContainer;
 								if (
 									startItem.type == CKEDITOR.NODE_ELEMENT &&
@@ -1066,9 +1068,14 @@
 									startItem.getParent().getName() in listNodeNames &&
 									!li.getParent().contains(startItem)
 								) {
-									var oldParent = startItem.getParent();
+									var oldParent = startItem.getParent(),
+										oldRange = nextLine.clone();
 									mergeChildren(oldParent, li.getParent());
+									// remove the old parent list,
+									// then any ancestors of it that are now left empty.
+									oldRange.moveToPosition(oldParent.getParent(), CKEDITOR.POSITION_AFTER_START);
 									oldParent.remove();
+									oldRange.removeEmptyBlocksAtEnd(true);
 									evt.cancel();
 								}
 								else {
