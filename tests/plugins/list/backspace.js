@@ -116,6 +116,9 @@ addTests( 'test delete neighboring ul and ol lists', 'delete_neighboring_lists2'
 addTests( 'test delete neighboring ul and ol lists that are already nested inside another list', 'delete_neighboring_lists3', DEL );
 addTests( 'test delete nested neighboring lists', 'delete_neighboring_nested_lists1', DEL );
 
+// word-like backspace behaviour
+addTests( 'test backspace neighboring ol and ul lists', 'backspace_neighboring_lists1', BACKSPACE );
+
 
 function addTests( title, source, key, keyModifiers, assertFn ) {
 	tests[ title + ' (' + source + ')' ] = function() {
