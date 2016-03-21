@@ -73,8 +73,6 @@ CKEDITOR.editorConfig = function (config) {
         'pstatenterkey',
     ].join();
 
-   config.startupOutlineBlocks = true;
-
     config.skin = 'flat';
     // %REMOVE_END%
 
@@ -350,5 +348,9 @@ CKEDITOR.editorConfig = function (config) {
     config.showBlocksTags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ol', 'ul'];
 
     config.disableNativeSpellChecker = false;
+
+    config.startupOutlineBlocks = true;
+
 };
+
 
