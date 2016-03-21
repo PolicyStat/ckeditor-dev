@@ -35,12 +35,12 @@
 
 	CKEDITOR.plugins.add( 'showblocks', {
 		// jscs:disable maximumLineLength
-		lang: 'af,ar,bg,bn,bs,ca,cs,cy,da,de,de-ch,el,en,en-au,en-ca,en-gb,eo,es,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,tt,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
+	        lang: 'af,ar,bg,bn,bs,ca,cs,cy,da,de,de-ch,el,en,en-au,en-ca,en-gb,eo,es,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,tt,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
 		// jscs:enable maximumLineLength
 		icons: 'showblocks,showblocks-rtl', // %REMOVE_LINE_CORE%
 		hidpi: true, // %REMOVE_LINE_CORE%
-		onLoad: function() {
-			var tags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ],
+		addCss: function(tags) {
+			var defaultTags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ],
 				cssStd, cssImg, cssLtr, cssRtl,
 				path = CKEDITOR.getUrl( this.path ),
 				// #10884 don't apply showblocks styles to non-editable elements and chosen ones.
@@ -50,6 +50,8 @@
 				notDisabled = supportsNotPseudoclass ? ':not([contenteditable=false]):not(.cke_show_blocks_off)' : '',
 				tag, trailing;
 
+			tags = tags ? tags : defaultTags;
+
 			cssStd = cssImg = cssLtr = cssRtl = '';
 
 			while ( ( tag = tags.pop() ) ) {
@@ -58,9 +60,13 @@
 				cssStd += '.cke_show_blocks ' + tag + notDisabled + trailing;
 				cssLtr += '.cke_show_blocks.cke_contents_ltr ' + tag + notDisabled + trailing;
 				cssRtl += '.cke_show_blocks.cke_contents_rtl ' + tag + notDisabled + trailing;
-				cssImg += '.cke_show_blocks ' + tag + notDisabled + '{' +
-					'background-image:url(' + CKEDITOR.getUrl( path + 'images/block_' + tag + '.png' ) + ')' +
-				'}';
+
+				// CKEditor only includes label images for the default tags
+				if (defaultTags.indexOf(tag) !== -1) {
+					cssImg += '.cke_show_blocks ' + tag + notDisabled + '{' +
+						'background-image:url(' + CKEDITOR.getUrl(path + 'images/block_' + tag + '.png') + ')' +
+						'}';
+				}
 			}
 
 			// .cke_show_blocks p { ... }
@@ -82,6 +88,7 @@
 				'padding-right:8px' +
 			'}';
 
+			// this may not work properly if multiple editors are on one page.
 			CKEDITOR.addCss( cssStd.concat( cssImg, cssLtr, cssRtl ) );
 
 			// [IE8] Reset showblocks styles for non-editables and chosen elements, because
@@ -139,6 +146,8 @@
 			function onFocusBlur() {
 				command.refresh( editor );
 			}
+
+			this.addCss(editor.config.showBlocksTags);
 		}
 	} );
 } )();
@@ -149,5 +158,14 @@
  *		config.startupOutlineBlocks = true;
  *
  * @cfg {Boolean} [startupOutlineBlocks=false]
+ * @member CKEDITOR.config
+ */
+
+/**
+ * Which tags the show blocks plugin will outline.
+ *
+ *		config.showBlocksTags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
+ *
+ * @cfg {Boolean} [showBlocksTags=[ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]]
  * @member CKEDITOR.config
  */
