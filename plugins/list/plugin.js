@@ -1076,8 +1076,7 @@
 									oldRange.moveToPosition( oldParent.getParent(), CKEDITOR.POSITION_AFTER_START );
 									oldParent.remove();
 									oldRange.removeEmptyBlocksAtEnd( true );
-								}
-								else {
+								} else {
 									joinNextLineToCursor( editor, cursor, nextLine );
 								}
 								evt.cancel();
