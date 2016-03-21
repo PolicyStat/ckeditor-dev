@@ -80,7 +80,7 @@ var CKBUILDER_CONFIG = {
 		'print' : 1,
 		'removeformat' : 1,
 		'save' : 1,
-		'scayt' : 1,
+		'scayt' : 0,
 		'selectall' : 1,
 		'showblocks' : 1,
 		'showborders' : 1,
@@ -95,7 +95,7 @@ var CKBUILDER_CONFIG = {
 		'tabletools' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
-		'wsc' : 1,
+		'wsc' : 0,
 		'wysiwygarea' : 1
 	},
 	languages : {
