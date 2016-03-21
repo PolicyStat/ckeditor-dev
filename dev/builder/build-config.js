@@ -84,6 +84,7 @@ var CKBUILDER_CONFIG = {
 		'selectall' : 1,
 		'showblocks' : 1,
 		'showborders' : 1,
+		'smiley': 0,
 		'sourcearea' : 1,
 		'sourcedialog' : 1,
 		'specialchar' : 1,
