@@ -112,6 +112,16 @@ addTests( 'test backspace outdent list item - SHIFT', 'outdent_list', BACKSPACE,
 addTests( 'test del join list items - CTRL', 'join_list1_del', DEL, CKEDITOR.CTRL );
 addTests( 'test del join with next list item - SHIFT', 'merge_next_list', DEL, CKEDITOR.SHIFT );
 
+// word-like delete behaviour
+addTests( 'test delete neighboring ol and ul lists', 'delete_neighboring_lists1', DEL );
+addTests( 'test delete neighboring ul and ol lists', 'delete_neighboring_lists2', DEL );
+addTests( 'test delete neighboring ul and ol lists that are already nested inside another list', 'delete_neighboring_lists3', DEL );
+addTests( 'test delete nested neighboring lists', 'delete_neighboring_nested_lists1', DEL );
+
+// word-like backspace behaviour
+addTests( 'test backspace neighboring ol and ul lists', 'backspace_neighboring_lists1', BACKSPACE );
+
+
 function addTests( title, source, key, keyModifiers, assertFn ) {
 	tests[ title + ' (' + source + ')' ] = function() {
 		this.assertBackspace( source, key, keyModifiers, assertFn );

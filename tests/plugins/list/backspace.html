@@ -501,6 +501,29 @@
 		<li><b>xxx</b>^<em>yyy</em>@</li>
 	</ul>
 </textarea>
+<textarea id="join_list19">
+	<ul>
+		<li>xxx</li>
+		<li>yyy</li>
+	</ul>
+	<ol></ol>
+	<p>^zzz</p>
+	=>
+	<ul>
+		<li>xxx</li><li>yyy</li>
+	</ul>
+	<ol>
+		<li>^zzz@</li>
+	</ol>
+</textarea>
+<textarea id="join_list20">
+	<ul></ul>
+	<p>^zzz</p>
+	=>
+	<ul>
+		<li>^zzz@</li>
+	</ul>
+</textarea>
 <textarea id="outdent_list3">
 	<table><tbody><tr><td>cell</td></tr></tbody></table>
 	<ol>
@@ -720,27 +743,131 @@
 	</ol>
 </textarea>
 
-<textarea id="join_list19">
+<textarea id="delete_neighboring_lists1">
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<li>c^</li>
+	</ol>
 	<ul>
-		<li>xxx</li>
-		<li>yyy</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
 	</ul>
-	<ol></ol>
-	<p>^zzz</p>
 	=>
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<li>c^</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ol>
+</textarea>
+<textarea id="delete_neighboring_lists2">
 	<ul>
-		<li>xxx</li><li>yyy</li>
+		<li>a</li>
+		<li>b</li>
+		<li>c^</li>
 	</ul>
 	<ol>
-		<li>^zzz@</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ol>
+	=>
+	<ul>
+		<li>a</li>
+		<li>b</li>
+		<li>c^</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</textarea>
+<textarea id="delete_neighboring_lists3">
+	<ol>
+		<li>
+			<ul>
+				<li>a</li>
+				<li>b</li>
+				<li>c^</li>
+			</ul>
+			<ol>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ol>
+		</li>
+	</ol>
+	=>
+	<ol>
+		<li>
+			<ul>
+				<li>a</li>
+				<li>b</li>
+				<li>c^</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</li>
 	</ol>
 </textarea>
 
-<textarea id="join_list20">
-	<ul></ul>
-	<p>^zzz</p>
-	=>
+<textarea id="delete_neighboring_nested_lists1">
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<ul>
+			<li>c^</li>
+		</ul>
+	</ol>
 	<ul>
-		<li>^zzz@</li>
+		<li>
+			<ol>
+				<li>foo</li>
+				<li>bar</li>
+			</ol>
+		</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	=>
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<ul>
+			<li>c^</li>
+			<li>foo</li>
+			<li>bar</li>
+		</ul>
+	</ol>
+	<ul>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</textarea>
+
+<textarea id="backspace_neighboring_lists1">
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<li>c</li>
+	</ol>
+	<ul>
+		<li>^1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	=>
+	<ol>
+		<li>a</li>
+		<li>b</li>
+		<li>c^1</li>
+	</ol>
+	<ul>
+		<li>2</li>
+		<li>3</li>
 	</ul>
 </textarea>
