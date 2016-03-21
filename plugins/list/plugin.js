@@ -1076,12 +1076,11 @@
 									oldRange.moveToPosition( oldParent.getParent(), CKEDITOR.POSITION_AFTER_START );
 									oldParent.remove();
 									oldRange.removeEmptyBlocksAtEnd( true );
-									evt.cancel();
 								}
 								else {
 									joinNextLineToCursor( editor, cursor, nextLine );
-									evt.cancel();
 								}
+								evt.cancel();
 							}
 						} else {
 							// Handle Del key pressed before the list.
