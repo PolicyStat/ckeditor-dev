@@ -68,14 +68,19 @@
 				if ( listItem.$.nodeName.toLowerCase() != 'li' )
 					continue;
 
-				var itemObj = { 'parent': listNode, indent: baseIndentLevel, element: listItem, contents: [] };
-				if ( !grandparentNode ) {
-					itemObj.grandparent = listNode.getParent();
-					if ( itemObj.grandparent && itemObj.grandparent.$.nodeName.toLowerCase() == 'li' )
-						itemObj.grandparent = itemObj.grandparent.getParent();
-				} else {
-					itemObj.grandparent = grandparentNode;
+				function createItemObj() {
+					var itemObj = {'parent': listNode, indent: baseIndentLevel, element: listItem, contents: []};
+					if (!grandparentNode) {
+						itemObj.grandparent = listNode.getParent();
+						if (itemObj.grandparent && itemObj.grandparent.$.nodeName.toLowerCase() == 'li')
+							itemObj.grandparent = itemObj.grandparent.getParent();
+						} else {
+						itemObj.grandparent = grandparentNode;
+						}
+					return itemObj;
 				}
+				var itemObj = createItemObj();
+				var needsNewItem = false;
 
 				if ( database )
 					CKEDITOR.dom.element.setMarker( database, listItem, 'listarray_index', baseArray.length );
@@ -83,12 +88,21 @@
 
 				for ( var j = 0, itemChildCount = listItem.getChildCount(), child; j < itemChildCount; j++ ) {
 					child = listItem.getChild( j );
-					if ( child.type == CKEDITOR.NODE_ELEMENT && listNodeNames[ child.getName() ] )
-					// Note the recursion here, it pushes inner list items with
-					// +1 indentation in the correct order.
-					CKEDITOR.plugins.list.listToArray( child, database, baseArray, baseIndentLevel + 1, itemObj.grandparent );
-					else
-						itemObj.contents.push( child );
+					if ( child.type == CKEDITOR.NODE_ELEMENT && listNodeNames[ child.getName() ] ) {
+						// Note the recursion here, it pushes inner list items with
+						// +1 indentation in the correct order.
+						CKEDITOR.plugins.list.listToArray(child, database, baseArray, baseIndentLevel + 1, itemObj.grandparent);
+						needsNewItem = true;
+					}
+
+					else {
+						if (needsNewItem) {
+							itemObj = createItemObj();
+							baseArray.push(itemObj);
+						}
+						itemObj.contents.push(child);
+						needsNewItem = false;
+					}
 				}
 			}
 			return baseArray;
@@ -114,7 +128,8 @@
 				indentLevel = Math.max( listArray[ baseIndex ].indent, 0 ),
 				currentListItem = null,
 				orgDir, block,
-				paragraphName = ( paragraphMode == CKEDITOR.ENTER_P ? 'p' : 'div' );
+				paragraphName = ( paragraphMode == CKEDITOR.ENTER_P ? 'p' : 'div' ),
+				cloneRegistry = {};
 
 			while ( 1 ) {
 				var item = listArray[ currentIndex ],
@@ -128,7 +143,11 @@
 						dir && rootNode.setAttribute( 'dir', dir );
 						retval.append( rootNode );
 					}
-					currentListItem = rootNode.append( item.element.clone( 0, 1 ) );
+					currentListItem = cloneRegistry[item.element.getUniqueId()];
+					if (!currentListItem) {
+						cloneRegistry[item.element.getUniqueId()] = rootNode.append(item.element.clone(0, 1));
+						currentListItem = cloneRegistry[item.element.getUniqueId()];
+					}
 
 					if ( orgDir != rootNode.getDirection( 1 ) )
 						currentListItem.setAttribute( 'dir', orgDir );
@@ -902,6 +921,15 @@
 									walker.reset();
 									walker.evaluator = isTextBlock;
 									previous = walker.previous();
+
+									// this can be null if the walker started inside a list with no child list items
+									// we know we are in a list, so just add an item
+									if (previous === null) {
+										var listItem = editor.document.createElement( 'li' );
+										previous = walker.range.startContainer;
+										listItem.appendTo( previous );
+										previous = listItem;
+									}
 								}
 
 								joinWith = previous;
