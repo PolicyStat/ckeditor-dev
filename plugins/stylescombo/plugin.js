@@ -99,6 +99,11 @@
 					var style = styles[ value ],
 						elementPath = editor.elementPath();
 
+					if (elementPath.elements[0].getName() === 'li') {
+						// trim the path to only the list item and parent.
+						elementPath.elements = elementPath.elements.slice(0, 2);
+					}
+
 					editor[ style.checkActive( elementPath, editor ) ? 'removeStyle' : 'applyStyle' ]( style );
 					editor.fire( 'saveSnapshot' );
 				},
@@ -107,10 +112,15 @@
 					editor.on( 'selectionChange', function( ev ) {
 						var currentValue = this.getValue(),
 							elementPath = ev.data.path,
-							elements = elementPath.elements;
+							elements = elementPath.elements,
+							pathDepth = elements.length;
+
+						if (elementPath.elements[0].getName() === 'li') {
+							pathDepth = 2;
+						}
 
 						// For each element into the elements path.
-						for ( var i = 0, count = elements.length, element; i < count; i++ ) {
+						for ( var i = 0, count = pathDepth, element; i < count; i++ ) {
 							element = elements[ i ];
 
 							// Check if the element is removable by any of
@@ -134,6 +144,13 @@
 						element = selection.getSelectedElement(),
 						elementPath = editor.elementPath( element ),
 						counter = [ 0, 0, 0, 0 ];
+
+					// we need to use the elementPath here
+					// because an element might not actually be selected
+					if (elementPath.elements[0].getName() === 'li') {
+						// trim the path to only the list item and parent.
+						elementPath.elements = elementPath.elements.slice(0, 2);
+					}
 
 					this.showAll();
 					this.unmarkAll();
