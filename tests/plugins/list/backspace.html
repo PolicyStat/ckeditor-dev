@@ -874,21 +874,50 @@
 
 <textarea id="delete_into_nested_list1">
 	<ul>
-		<li>hello
+		<li>a
 			<ul>
 				<li>^</li>
 			</ul>
 		</li>
-		<li>goodbye</li>
-		<li>cya</li>
+		<li>b</li>
+		<li>c</li>
 	</ul>
 	=>
 	<ul>
-		<li>hello
+		<li>a
 			<ul>
-				<li>^goodbye</li>
+				<li>^b</li>
 			</ul>
 		</li>
-		<li>cya</li>
+		<li>c</li>
+	</ul>
+</textarea>
+
+<textarea id="delete_into_nested_list2">
+	<ul>
+		<li>a
+			<ul>
+				<li>^</li>
+			</ul>
+		</li>
+		<li>b
+			<ol>
+				<li>c</li>
+			</ol>
+		</li>
+		<li>d</li>
+	</ul>
+	=>
+	<ul>
+		<li>a
+			<ul>
+				<li>^b
+					<ol>
+						<li>c</li>
+					</ol>
+				</li>
+			</ul>
+		</li>
+		<li>d</li>
 	</ul>
 </textarea>

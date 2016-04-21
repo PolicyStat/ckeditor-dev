@@ -117,7 +117,9 @@ addTests( 'test delete neighboring ol and ul lists', 'delete_neighboring_lists1'
 addTests( 'test delete neighboring ul and ol lists', 'delete_neighboring_lists2', DEL );
 addTests( 'test delete neighboring ul and ol lists that are already nested inside another list', 'delete_neighboring_lists3', DEL );
 addTests( 'test delete nested neighboring lists', 'delete_neighboring_nested_lists1', DEL );
+// prevent blowing up cases where the neighboring lists are in the same tree
 addTests( 'test delete into nested list', 'delete_into_nested_list1', DEL);
+addTests( 'test delete into nested list', 'delete_into_nested_list2', DEL);
 
 // word-like backspace behaviour
 addTests( 'test backspace neighboring ol and ul lists', 'backspace_neighboring_lists1', BACKSPACE );
