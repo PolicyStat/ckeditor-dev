@@ -1090,12 +1090,15 @@
 								// if we have two neighboring lists, merge the list items from the second
 								// into the first, rather than moving one item at a time.
 								var startItem = nextLine.startContainer;
+								var commonAncestor = li.getCommonAncestor(startItem);
 								if (
 									startItem.type == CKEDITOR.NODE_ELEMENT &&
 									startItem.getName() == 'li' &&
 									startItem.getParent().getName() in listNodeNames &&
-									!li.getParent().contains(startItem)
+									!( commonAncestor.getName() in listNodeNames ) &&
+									!( li.contains( startItem ) )
 								) {
+									editor.fire( 'saveSnapshot' );
 									var oldParent = startItem.getParent(),
 										oldRange = nextLine.clone();
 									mergeChildren( oldParent, li.getParent() );
@@ -1104,6 +1107,7 @@
 									oldRange.moveToPosition( oldParent.getParent(), CKEDITOR.POSITION_AFTER_START );
 									oldParent.remove();
 									oldRange.removeEmptyBlocksAtEnd( true );
+									editor.fire( 'saveSnapshot' );
 								} else {
 									joinNextLineToCursor( editor, cursor, nextLine );
 								}
