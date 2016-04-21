@@ -871,3 +871,24 @@
 		<li>3</li>
 	</ul>
 </textarea>
+
+<textarea id="delete_into_nested_list1">
+	<ul>
+		<li>hello
+			<ul>
+				<li>^</li>
+			</ul>
+		</li>
+		<li>goodbye</li>
+		<li>cya</li>
+	</ul>
+	=>
+	<ul>
+		<li>hello
+			<ul>
+				<li>^goodbye</li>
+				<li>cya</li>
+			</ul>
+		</li>
+	</ul>
+</textarea>
