@@ -316,7 +316,7 @@
 			} );
 
 			editor.on( 'blur', function() {
-				if (!alwaysShow) {
+				if ( !alwaysShow ) {
 					floatSpace.hide();
 				}
 				editor.removeListener( 'change', changeBuffer.input );
