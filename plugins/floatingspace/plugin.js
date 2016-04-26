@@ -26,6 +26,7 @@
 
 	function attach( editor ) {
 		var config = editor.config,
+			alwaysShow = config.floatSpaceAlwaysShow || false,
 
 			// Get the HTML for the predefined spaces.
 			topHtml = editor.fire( 'uiSpace', { space: 'top', html: '' } ).html,
@@ -315,7 +316,9 @@
 			} );
 
 			editor.on( 'blur', function() {
-				floatSpace.hide();
+				if ( !alwaysShow ) {
+					floatSpace.hide();
+				}
 				editor.removeListener( 'change', changeBuffer.input );
 				win.removeListener( 'scroll', uiBuffer.input );
 				win.removeListener( 'resize', uiBuffer.input );
@@ -337,6 +340,17 @@
 		}
 	}
 } )();
+
+/**
+ * Indicates that the floating space will not be
+ * hidden when blurring.
+ *
+ *		config.floatSpaceAlwaysShow = true;
+ *
+ * @since 4.5
+ * @cfg {Boolean} [floatSpaceAlwaysShow=false]
+ * @member CKEDITOR.config
+ */
 
 /**
  * Along with {@link #floatSpaceDockedOffsetY} it defines the
