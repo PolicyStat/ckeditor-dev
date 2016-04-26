@@ -319,6 +319,11 @@
 				if ( !alwaysShow ) {
 					floatSpace.hide();
 				}
+				else {
+					// sometimes blurring can cause a final resize
+					// so do the layout again in case document height changed
+					layout();
+				}
 				editor.removeListener( 'change', changeBuffer.input );
 				win.removeListener( 'scroll', uiBuffer.input );
 				win.removeListener( 'resize', uiBuffer.input );
