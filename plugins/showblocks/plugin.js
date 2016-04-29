@@ -23,9 +23,13 @@
 		},
 
 		refresh: function( editor ) {
+			var showBlocksOnBlur = editor.config.showBlocksOnBlur || false;
 			if ( editor.document ) {
 				// Show blocks turns inactive after editor loses focus when in inline.
-				var showBlocks = ( this.state == CKEDITOR.TRISTATE_ON && ( editor.elementMode != CKEDITOR.ELEMENT_MODE_INLINE || editor.focusManager.hasFocus ) );
+				var showBlocks = (
+					this.state == CKEDITOR.TRISTATE_ON &&
+					( editor.elementMode != CKEDITOR.ELEMENT_MODE_INLINE || showBlocksOnBlur || editor.focusManager.hasFocus )
+				);
 
 				var funcName = showBlocks ? 'attachClass' : 'removeClass';
 				editor.editable()[ funcName ]( 'cke_show_blocks' );
@@ -151,6 +155,15 @@
 		}
 	} );
 } )();
+
+/**
+ * Whether to continue showing the blocks on blur (inline only)
+ *
+ *		config.showBlocksOnBlur = false;
+ *
+ * @cfg {Boolean} [showBlocksOnBlur=false]
+ * @member CKEDITOR.config
+ */
 
 /**
  * Whether to automaticaly enable the show block" command when the editor loads.
