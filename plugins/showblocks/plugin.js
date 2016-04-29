@@ -144,6 +144,15 @@
 } )();
 
 /**
+ * Whether to continue showing the blocks on blur (inline only)
+ *
+ *		config.showBlocksOnBlur = false;
+ *
+ * @cfg {Boolean} [showBlocksOnBlur=false]
+ * @member CKEDITOR.config
+ */
+
+/**
  * Whether to automaticaly enable the show block" command when the editor loads.
  *
  *		config.startupOutlineBlocks = true;
