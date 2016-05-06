@@ -15,7 +15,6 @@
 	var tests = {};
 
 	tests.setUp = function() {
-		CKEDITOR.plugins.clipboard.resetDragDataTransfer();
 		// be inside a list item
 		bender.tools.setHtmlWithSelection( this.editor, '<ol><li>^</li></ol>' );
 	};
