@@ -1,5 +1,5 @@
 (function () {
-	CKEDITOR.plugins.add('shift_enter_paste_into_list', {
+	CKEDITOR.plugins.add('shiftenterlistpastefilter', {
 		init: function (editor) {
 			function filterWithShiftEnterMode( editor, data ) {
 				var fragment = CKEDITOR.htmlParser.fragment.fromHtml( data ),

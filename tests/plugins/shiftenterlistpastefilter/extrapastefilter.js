@@ -1,5 +1,5 @@
 /* bender-tags: editor,unit */
-/* bender-ckeditor-plugins: toolbar,clipboard,pastetext,shift_enter_paste_into_list */
+/* bender-ckeditor-plugins: toolbar,clipboard,pastetext,shiftenterlistpastefilter */
 /* bender-include: ../clipboard/_helpers/pasting.js */
 /* global assertPasteEvent */
 
