@@ -10,7 +10,7 @@
 	 * this seems to be the less destructive way that also
 	 * prevents you from "poisoning" a list into creating block tags for eternity.
 	 */
-	CKEDITOR.plugins.add('shiftenterlistpastefilter', {
+	CKEDITOR.plugins.add('remove_enter_blocks_during_list_paste', {
 		init: function (editor) {
 			function filterWithShiftEnterMode( editor, data ) {
 				var AFTER_CLIPBOARD_HANDLERS_PRIORITY = 9,
