@@ -19,8 +19,8 @@
 	var tests = {};
 
 	tests.setUp = function() {
-		// be inside a list item
-		bender.tools.setHtmlWithSelection( this.editor, '<ol><li></li></ol>' );
+		// be inside a table cell
+		bender.tools.setHtmlWithSelection( this.editor, '<ol><li><table><tr><td>^></td></tr></table></li></ol>' );
 	};
 
 	tests[ 'test_single_p_does_not_get_removed_in_list_item' ] = function() {
