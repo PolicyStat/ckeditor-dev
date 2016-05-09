@@ -13,7 +13,7 @@
 	CKEDITOR.plugins.add('remove_enter_blocks_during_list_paste', {
 		init: function (editor) {
 			var AFTER_CLIPBOARD_HANDLERS_PRIORITY = 9;
-			
+
 			function filterWithShiftEnterMode( editor, data ) {
 				var fragment = CKEDITOR.htmlParser.fragment.fromHtml( data ),
 					writer = new CKEDITOR.htmlParser.basicWriter(),

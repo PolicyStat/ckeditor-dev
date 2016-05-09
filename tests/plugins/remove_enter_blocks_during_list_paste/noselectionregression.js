@@ -3,6 +3,10 @@
 /* bender-include: ../clipboard/_helpers/pasting.js */
 /* global assertPasteEvent */
 
+/**
+ * This test suite checks that installing the remove_enter_blocks_during_list_paste
+ * plugin doesn't break the no-selection paste case.  (Items should be pasted as is)
+ */
 ( function() {
 	'use strict';
 	bender.editor = {
