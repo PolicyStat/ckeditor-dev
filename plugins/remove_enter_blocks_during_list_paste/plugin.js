@@ -26,7 +26,7 @@
 					filter.disallow( 'div' );
 				}
 				else {
-					// short circuit
+					// short circuit to leave br alone.
 					return data;
 				}
 
