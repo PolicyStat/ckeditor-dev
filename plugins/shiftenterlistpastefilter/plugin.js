@@ -24,9 +24,9 @@
 
 			editor.on('paste', function(ev) {
 				var editor = ev.editor;
-				var currentElementName = editor.getSelection().getStartElement().getName();
+				var block = editor.elementPath().block;
 
-				if (currentElementName === 'li') {
+				if (block && block.getName() === 'li') {
 					ev.data.dataValue = filterWithShiftEnterMode(editor, ev.data.dataValue);
 				}
 
