@@ -40,6 +40,8 @@
 				var editor = ev.editor;
 				var block = editor.elementPath().block;
 
+				// li will not be returned
+				// if we have a blockLimit in between (one of the blocks which cannot be split
 				if (block && block.getName() === 'li') {
 					ev.data.dataValue = filterWithShiftEnterMode(editor, ev.data.dataValue);
 				}
