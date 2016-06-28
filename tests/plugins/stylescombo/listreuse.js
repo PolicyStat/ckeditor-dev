@@ -34,20 +34,25 @@
 
 			bot.setHtmlWithSelection( '<ol class="ol-a"><li>^</li></ol>' );
 
+			// items are not marked until the combo is opened
 			stylesCombo.createPanel( editor );
+			stylesCombo.onOpen();
 
 			assert.areEqual( 'ol-a', stylesCombo._.value );
+			assert.isTrue(stylesCombo._.list.isMarked('ol-a'));
 		},
 		'test list style value is not selected from parent list item': function() {
-		var editor = this.editor,
-			stylesCombo = editor.ui.get( 'Styles'),
-			bot = this.editorBot;
+			var editor = this.editor,
+				stylesCombo = editor.ui.get( 'Styles'),
+				bot = this.editorBot;
 
-		bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li>^</li></ol></li></ol>' );
+			bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li>^</li></ol></li></ol>' );
 
-		stylesCombo.createPanel( editor );
+			stylesCombo.createPanel( editor );
+			stylesCombo.onOpen();
 
-		assert.areEqual( '', stylesCombo._.value );
+			assert.areEqual( '', stylesCombo._.value );
+			assert.isFalse(stylesCombo._.list.isMarked('ol-a'));
 		},
 		'test list style value is not selected from parent list item when in non-list child': function() {
 			var editor = this.editor,
@@ -57,8 +62,10 @@
 			bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li><strong>^</strong></li></ol></li></ol>' );
 
 			stylesCombo.createPanel( editor );
+			stylesCombo.onOpen();
 
 			assert.areEqual( '', stylesCombo._.value );
+			assert.isFalse(stylesCombo._.list.isMarked('ol-a'))
 		},
 		'test list style value from unordered list': function() {
 			var editor = this.editor,
@@ -68,8 +75,10 @@
 			bot.setHtmlWithSelection( '<ul class="ul-a"><li><ul><li>^</li></ul></li></ul>' );
 
 			stylesCombo.createPanel( editor );
+			stylesCombo.onOpen();
 
 			assert.areEqual( '', stylesCombo._.value );
+			assert.isFalse(stylesCombo._.list.isMarked('ul-a'))
 		}
 	} );
 } )();
