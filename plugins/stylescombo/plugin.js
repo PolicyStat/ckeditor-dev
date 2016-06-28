@@ -110,7 +110,7 @@
 
 				onRender: function() {
 					function getCutOffIndex(elements, tagNames) {
-						// given an element path and an array of tag names to stop on,
+						// given an array of elements and an array of tag names to stop on,
 						// returns the earliest index of any of the tag names, or -1
 
 						var cutOffIndexes = [];
