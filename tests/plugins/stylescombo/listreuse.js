@@ -51,7 +51,29 @@
 
 			stylesCombo.createPanel( editor );
 
-			assert.areEqual( stylesCombo._.value, 'List: A. B. C.' );
+			assert.areEqual( 'List: A. B. C.', stylesCombo._.value );
+		},
+		'test list style value is not selected from parent list item': function() {
+		var editor = this.editor,
+			stylesCombo = editor.ui.get( 'Styles'),
+			bot = this.editorBot;
+
+		bot.setHtmlWithSelection( '<ol class="list-upper-alpha"><li><ol><li>^</li></ol></li></ol>' );
+
+		stylesCombo.createPanel( editor );
+
+		assert.areEqual( '', stylesCombo._.value );
+		},
+		'test list style value is not selected from parent list item when in non-list child': function() {
+			var editor = this.editor,
+				stylesCombo = editor.ui.get( 'Styles'),
+				bot = this.editorBot;
+
+			bot.setHtmlWithSelection( '<ol class="list-upper-alpha"><li><ol><li><strong>^</strong></li></ol></li></ol>' );
+
+			stylesCombo.createPanel( editor );
+
+			assert.areEqual( '', stylesCombo._.value );
 		}
 	} );
 } )();
