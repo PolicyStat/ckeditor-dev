@@ -113,12 +113,19 @@
 						var currentValue = this.getValue(),
 							elementPath = ev.data.path,
 							elements = elementPath.elements,
-							pathDepth = elements.length;
+							pathDepth = elements.length,
+							elementNames;
 
-						if (elementPath.elements[0].getName() === 'li') {
-							pathDepth = 2;
+						elementNames = elements.map(function(element) {
+							return element.getName();
+						});
+
+						var closestListIndex = elementNames.indexOf('ol');
+
+						if (closestListIndex !== -1) {
+							pathDepth = 1 + closestListIndex;
 						}
-
+						
 						// For each element into the elements path.
 						for ( var i = 0, count = pathDepth, element; i < count; i++ ) {
 							element = elements[ i ];
