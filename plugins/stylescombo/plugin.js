@@ -6,6 +6,30 @@
 ( function() {
 	'use strict';
 
+	function getCutOffIndex(elements, tagNames) {
+		// given an array of elements and an array of tag names to stop on,
+		// returns the earliest index of any of the tag names, or -1
+
+		var cutOffIndexes = [];
+		var elementNames = elements.map(function(element) {
+			return element.getName();
+		});
+
+		tagNames.forEach(function(tagName, _, __) {
+			var closestIndex = elementNames.indexOf(tagName);
+			// the tag name actually exists in the current element path
+			if (closestIndex !== -1) {
+				cutOffIndexes.push(closestIndex);
+			}
+		});
+
+		if (cutOffIndexes.length !== 0) {
+			return Math.min.apply(null, cutOffIndexes);
+		} else {
+			return -1;
+		}
+	};
+
 	CKEDITOR.plugins.add( 'stylescombo', {
 		requires: 'richcombo',
 		// jscs:disable maximumLineLength
@@ -109,31 +133,6 @@
 				},
 
 				onRender: function() {
-					function getCutOffIndex(elements, tagNames) {
-						// given an array of elements and an array of tag names to stop on,
-						// returns the earliest index of any of the tag names, or -1
-
-						var cutOffIndexes = [];
-						var elementNames = elements.map(function(element) {
-							return element.getName();
-						});
-
-						tagNames.forEach(function(tagName, _, __) {
-							var closestIndex = elementNames.indexOf(tagName);
-							// the tag name actually exists in the current element path
-							if (closestIndex !== -1) {
-								cutOffIndexes.push(closestIndex);
-							}
-						});
-
-						if (cutOffIndexes.length !== 0) {
-							return Math.min.apply(null, cutOffIndexes);
-						}
-						else {
-							return -1;
-						}
-					}
-
 					editor.on( 'selectionChange', function( ev ) {
 						var currentValue = this.getValue(),
 							elementPath = ev.data.path,
@@ -172,11 +171,10 @@
 						elementPath = editor.elementPath( element ),
 						counter = [ 0, 0, 0, 0 ];
 
-					// we need to use the elementPath here
-					// because an element might not actually be selected
-					if (elementPath.elements[0].getName() === 'li') {
+					var cutoff = getCutOffIndex(elementPath.elements, ['ol', 'ul'])
+					if (cutoff !== -1) {
 						// trim the path to only the list item and parent.
-						elementPath.elements = elementPath.elements.slice(0, 2);
+						elementPath.elements = elementPath.elements.slice(0, 1+cutoff);
 					}
 
 					this.showAll();
