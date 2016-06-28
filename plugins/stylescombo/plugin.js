@@ -138,8 +138,7 @@
 						var currentValue = this.getValue(),
 							elementPath = ev.data.path,
 							elements = elementPath.elements,
-							pathDepth = elements.length,
-							cutOffs;
+							pathDepth = elements.length;
 
 						var cutOffIndex = getCutOffIndex(elements, ['ol', 'ul']);
 
