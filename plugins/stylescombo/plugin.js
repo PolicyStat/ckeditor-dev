@@ -109,32 +109,41 @@
 				},
 
 				onRender: function() {
+					function getCutOffIndex(elements, tagNames) {
+						var cutOffIndexes = [];
+						var elementNames = elements.map(function(element) {
+							return element.getName();
+						});
+
+						tagNames.forEach(function(tagName, _, __) {
+							var closestIndex = elementNames.indexOf(tagName);
+
+							if (closestIndex !== -1) {
+								cutOffIndexes.push(closestIndex);
+							}
+						});
+
+						if (cutOffIndexes.length !== 0) {
+							return Math.min.apply(null, cutOffIndexes);
+						}
+						else {
+							return -1;
+						}
+					}
+
 					editor.on( 'selectionChange', function( ev ) {
 						var currentValue = this.getValue(),
 							elementPath = ev.data.path,
 							elements = elementPath.elements,
 							pathDepth = elements.length,
-							elementNames,
-							cutOffs = [];
+							cutOffs;
 
-						elementNames = elements.map(function(element) {
-							return element.getName();
-						});
+						var cutOffIndex = getCutOffIndex(elements, ['ol', 'ul']);
 
-						var closestOlIndex = elementNames.indexOf('ol'),
-							closestUlIndex = elementNames.indexOf('ul');
-
-						if (closestOlIndex !== -1) {
-							cutOffs.push(closestOlIndex);
-						}
-						if (closestUlIndex !== -1) {
-							cutOffs.push(closestUlIndex);
+						if (cutOffIndex !== -1) {
+							pathDepth = 1 + cutOffIndex;
 						}
 
-						if (cutOffs.length !== 0) {
-							pathDepth = 1 + Math.min.apply(null, cutOffs);
-						}
-						
 						// For each element into the elements path.
 						for ( var i = 0, count = pathDepth, element; i < count; i++ ) {
 							element = elements[ i ];
