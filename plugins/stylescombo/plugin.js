@@ -10,16 +10,16 @@
 		// given an array of elements and an array of tag names to stop on,
 		// returns the earliest index of any of the tag names, or -1
 
-		var cutOffIndexes = [];
-		var elementNames = elements.map(function(element) {
-			return element.getName();
-		});
+		var minIndexes = {},
+			cutOffIndexes = [];
+
+		for (var i = elements.length - 1; i >= 0; --i) {
+			minIndexes[elements[i].getName()] = i;
+		}
 
 		tagNames.forEach(function(tagName, _, __) {
-			var closestIndex = elementNames.indexOf(tagName);
-			// the tag name actually exists in the current element path
-			if (closestIndex !== -1) {
-				cutOffIndexes.push(closestIndex);
+			if (minIndexes[tagName] !== undefined) {
+				cutOffIndexes.push(minIndexes[tagName]);
 			}
 		});
 
@@ -28,7 +28,7 @@
 		} else {
 			return -1;
 		}
-	};
+	}
 
 	CKEDITOR.plugins.add( 'stylescombo', {
 		requires: 'richcombo',
