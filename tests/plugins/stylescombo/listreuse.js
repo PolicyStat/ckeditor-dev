@@ -42,21 +42,16 @@
 	CKEDITOR.stylesSet.add( 'listtester', testStyles );
 
 	bender.test( {
-		'test list styles can be reused': function() {
+		'test list style value is selected': function() {
 			var editor = this.editor,
-				stylesCombo = editor.ui.get( 'Styles' );
+				stylesCombo = editor.ui.get( 'Styles'),
+			    bot = this.editorBot;
+
+			bot.setHtmlWithSelection( '<ol class="list-upper-alpha"><li>^</li></ol>' );
 
 			stylesCombo.createPanel( editor );
 
-			var items = stylesCombo._.items,
-				keys = [],
-				i = 0;
-
-			// Fetch keys only.
-			for ( keys[ i++ ] in items ); // jshint ignore:line
-
-			assert.areEqual( testStyles.length, keys.length, 'A number of styles matches.' );
-			arrayAssert.itemsAreSame( blockNames.concat( inlineNames ), keys, 'Styles are in ascending order, grouped.' );
+			assert.areEqual( stylesCombo._.value, 'List: A. B. C.' );
 		}
 	} );
 } )();
