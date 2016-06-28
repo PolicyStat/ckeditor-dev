@@ -114,18 +114,27 @@
 							elementPath = ev.data.path,
 							elements = elementPath.elements,
 							pathDepth = elements.length,
-							elementNames;
+							elementNames,
+							cutOffs = [];
 
 						elementNames = elements.map(function(element) {
 							return element.getName();
 						});
 
-						var closestListIndex = elementNames.indexOf('ol');
+						var closestOlIndex = elementNames.indexOf('ol'),
+							closestUlIndex = elementNames.indexOf('ul');
 
-						if (closestListIndex !== -1) {
-							pathDepth = 1 + closestListIndex;
+						if (closestOlIndex !== -1) {
+							cutOffs.push(closestOlIndex);
 						}
-						
+						if (closestUlIndex !== -1) {
+							cutOffs.push(closestUlIndex);
+						}
+
+						if (cutOffs.length !== 0) {
+							pathDepth = 1 + Math.min.apply(null, cutOffs);
+						}
+
 						// For each element into the elements path.
 						for ( var i = 0, count = pathDepth, element; i < count; i++ ) {
 							element = elements[ i ];
