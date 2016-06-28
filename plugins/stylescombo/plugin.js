@@ -110,7 +110,7 @@
 
 				onRender: function() {
 					function getCutOffIndex(elements, tagNames) {
-						// given an element path and a list of tag names to stop on,
+						// given an element path and an array of tag names to stop on,
 						// returns the earliest index of any of the tag names, or -1
 
 						var cutOffIndexes = [];
@@ -120,7 +120,7 @@
 
 						tagNames.forEach(function(tagName, _, __) {
 							var closestIndex = elementNames.indexOf(tagName);
-
+							// the tag name actually exists in the current element path
 							if (closestIndex !== -1) {
 								cutOffIndexes.push(closestIndex);
 							}
