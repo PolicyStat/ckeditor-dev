@@ -37,7 +37,7 @@
 		}
 	}
 
-	var defaultTabConfig = { id: 1, dir: 1, classes: 1, styles: 1 };
+	var defaultTabConfig = { id: 1, dir: 0, classes: 1, styles: 1 };
 
 	CKEDITOR.plugins.add( 'dialogadvtab', {
 		requires: 'dialog',

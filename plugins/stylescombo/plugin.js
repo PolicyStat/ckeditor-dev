@@ -133,8 +133,7 @@
 
 						if (cutOffs.length !== 0) {
 							pathDepth = 1 + Math.min.apply(null, cutOffs);
-						}
-
+							
 						// For each element into the elements path.
 						for ( var i = 0, count = pathDepth, element; i < count; i++ ) {
 							element = elements[ i ];

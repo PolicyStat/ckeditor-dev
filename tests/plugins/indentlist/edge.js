@@ -35,6 +35,10 @@ addTests( 'test indent nests list when items are wrapped in paragraph and caret 
 	[ '<ul><li><p>foo</p></li><li><p>b^ar</p></li></ul>', '<ul><li><p>foo</p><ul><li><p>bar</p></li></ul></li></ul>' ]
 ] );
 
+addTests( 'test indent preserves order when multiple text nodes exist', 'indent', [
+	[ '<ol><li>abc<ul><li>foo</li></ul>zyx</li><li>^bar</li></ol>', '<ol><li>abc<ul><li>foo</li></ul>zyx<ol><li>bar</li></ol></li></ol>']
+] );
+
 // ### Finished adding tests.
 
 function addTests( title, command, testsToAdd ) {

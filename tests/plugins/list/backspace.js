@@ -50,6 +50,8 @@ addTests( 'test backspace join list items', 'join_list15', BACKSPACE, undefined,
 addTests( 'test backspace join list items', 'join_list16', BACKSPACE, undefined, assertNotNestedAnchors );
 addTests( 'test backspace join list items', 'join_list17', BACKSPACE );
 addTests( 'test backspace join list items', 'join_list18', BACKSPACE );
+addTests( 'test backspace join list items', 'join_list19', BACKSPACE );
+addTests( 'test backspace join list items', 'join_list20', BACKSPACE );
 
 function assertNotNestedAnchors( editor ) {
 	assert.isNull( editor.editable().findOne( 'a a' ) );
@@ -109,6 +111,19 @@ addTests( 'test backspace join list items - CTRL', 'join_list1', BACKSPACE, CKED
 addTests( 'test backspace outdent list item - SHIFT', 'outdent_list', BACKSPACE, CKEDITOR.SHIFT );
 addTests( 'test del join list items - CTRL', 'join_list1_del', DEL, CKEDITOR.CTRL );
 addTests( 'test del join with next list item - SHIFT', 'merge_next_list', DEL, CKEDITOR.SHIFT );
+
+// word-like delete behaviour
+addTests( 'test delete neighboring ol and ul lists', 'delete_neighboring_lists1', DEL );
+addTests( 'test delete neighboring ul and ol lists', 'delete_neighboring_lists2', DEL );
+addTests( 'test delete neighboring ul and ol lists that are already nested inside another list', 'delete_neighboring_lists3', DEL );
+addTests( 'test delete nested neighboring lists', 'delete_neighboring_nested_lists1', DEL );
+// prevent blowing up cases where the neighboring lists are in the same tree
+addTests( 'test delete list parent sibling into nested list', 'delete_into_nested_list1', DEL);
+addTests( 'test delete list parent sibling and child into nested list', 'delete_into_nested_list2', DEL);
+
+// word-like backspace behaviour
+addTests( 'test backspace neighboring ol and ul lists', 'backspace_neighboring_lists1', BACKSPACE );
+
 
 function addTests( title, source, key, keyModifiers, assertFn ) {
 	tests[ title + ' (' + source + ')' ] = function() {
