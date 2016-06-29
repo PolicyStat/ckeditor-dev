@@ -6,30 +6,6 @@
 ( function() {
 	'use strict';
 
-	function getCutOffIndex(elements, tagNames) {
-		// given an array of elements and an array of tag names to stop on,
-		// returns the earliest index of any of the tag names, or -1
-
-		var minIndexes = {},
-			cutOffIndexes = [];
-
-		for (var i = elements.length - 1; i >= 0; --i) {
-			minIndexes[elements[i].getName()] = i;
-		}
-
-		tagNames.forEach(function(tagName, _, __) {
-			if (minIndexes[tagName] !== undefined) {
-				cutOffIndexes.push(minIndexes[tagName]);
-			}
-		});
-
-		if (cutOffIndexes.length !== 0) {
-			return Math.min.apply(null, cutOffIndexes);
-		} else {
-			return -1;
-		}
-	}
-
 	CKEDITOR.plugins.add( 'stylescombo', {
 		requires: 'richcombo',
 		// jscs:disable maximumLineLength
@@ -139,10 +115,8 @@
 							elements = elementPath.elements,
 							pathDepth = elements.length;
 
-						var cutOffIndex = getCutOffIndex(elements, ['ol', 'ul']);
-
-						if (cutOffIndex !== -1) {
-							pathDepth = 1 + cutOffIndex;
+						if (elementPath.elements[0].getName() === 'li') {
+							pathDepth = 2;
 						}
 
 						// For each element into the elements path.
@@ -171,10 +145,11 @@
 						elementPath = editor.elementPath( element ),
 						counter = [ 0, 0, 0, 0 ];
 
-					var cutoff = getCutOffIndex(elementPath.elements, ['ol', 'ul'])
-					if (cutoff !== -1) {
+					// we need to use the elementPath here
+					// because an element might not actually be selected
+					if (elementPath.elements[0].getName() === 'li') {
 						// trim the path to only the list item and parent.
-						elementPath.elements = elementPath.elements.slice(0, 1+cutoff);
+						elementPath.elements = elementPath.elements.slice(0, 2);
 					}
 
 					this.showAll();
