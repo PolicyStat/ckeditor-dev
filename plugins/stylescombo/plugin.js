@@ -123,9 +123,10 @@
 					var style = styles[ value ],
 						elementPath = editor.elementPath();
 
-					if (elementPath.elements[0].getName() === 'li') {
+					var cutoff = getCutOffIndex(elementPath.elements, ['ol', 'ul']);
+					if (cutoff !== -1) {
 						// trim the path to only the list item and parent.
-						elementPath.elements = elementPath.elements.slice(0, 2);
+						elementPath.elements = elementPath.elements.slice(0, 1+cutoff);
 					}
 
 					editor[ style.checkActive( elementPath, editor ) ? 'removeStyle' : 'applyStyle' ]( style );
@@ -171,7 +172,7 @@
 						elementPath = editor.elementPath( element ),
 						counter = [ 0, 0, 0, 0 ];
 
-					var cutoff = getCutOffIndex(elementPath.elements, ['ol', 'ul'])
+					var cutoff = getCutOffIndex(elementPath.elements, ['ol', 'ul']);
 					if (cutoff !== -1) {
 						// trim the path to only the list item and parent.
 						elementPath.elements = elementPath.elements.slice(0, 1+cutoff);
