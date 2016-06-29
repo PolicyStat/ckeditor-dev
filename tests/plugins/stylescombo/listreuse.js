@@ -36,7 +36,7 @@
 
 			// items are not marked until the combo is opened
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen();
+			stylesCombo.onOpen( editor );
 
 			assert.areEqual( 'ol-a', stylesCombo._.value );
 			assert.isTrue(stylesCombo._.list.isMarked('ol-a'));
@@ -49,23 +49,36 @@
 			bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li>^</li></ol></li></ol>' );
 
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen();
+			stylesCombo.onOpen( editor );
 
 			assert.areEqual( '', stylesCombo._.value );
 			assert.isFalse(stylesCombo._.list.isMarked('ol-a'));
+
+			stylesCombo.onClick( 'ol-a' );
+			assert.areSame( '<ol class="ol-a"><li><ol class="ol-a"><li>&nbsp;</li></ol></li></ol>', bot.getData( true ) );
 		},
 		'test list style value is not selected from parent list item when in non-list child': function() {
 			var editor = this.editor,
 				stylesCombo = editor.ui.get( 'Styles'),
 				bot = this.editorBot;
 
-			bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li><strong>^</strong></li></ol></li></ol>' );
+			bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li><strong>asd^</strong></li></ol></li></ol>' );
 
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen();
+			stylesCombo.onOpen( editor );
 
 			assert.areEqual( '', stylesCombo._.value );
-			assert.isFalse(stylesCombo._.list.isMarked('ol-a'))
+			assert.isFalse(stylesCombo._.list.isMarked('ol-a'));
+
+			// add the ol-a style to the inner list
+			stylesCombo.onClick( 'ol-a' );
+			assert.areSame( '<ol class="ol-a"><li><ol class="ol-a"><li><strong>asd</strong></li></ol></li></ol>', bot.getData( true ) );
+
+			// unmark it, class should stay applied on the outside
+
+			stylesCombo.onClick( 'ol-a' );
+			assert.areSame( '<ol class="ol-a"><li><ol><li><strong>asd</strong></li></ol></li></ol>', bot.getData( true ) );
+
 		},
 		'test list style value from unordered list': function() {
 			var editor = this.editor,
@@ -75,10 +88,14 @@
 			bot.setHtmlWithSelection( '<ul class="ul-a"><li><ul><li>^</li></ul></li></ul>' );
 
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen();
+			stylesCombo.onOpen( editor );
 
 			assert.areEqual( '', stylesCombo._.value );
-			assert.isFalse(stylesCombo._.list.isMarked('ul-a'))
+			assert.isFalse(stylesCombo._.list.isMarked('ul-a'));
+
+			stylesCombo.onClick( 'ul-a' );
+			assert.areSame( '<ul class="ul-a"><li><ul class="ul-a"><li>&nbsp;</li></ul></li></ul>', bot.getData( true ) );
+
 		}
 	} );
 } )();
