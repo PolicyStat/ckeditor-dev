@@ -36,7 +36,7 @@
 
 			// items are not marked until the combo is opened
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen( editor );
+			stylesCombo.onOpen();
 
 			assert.areEqual( 'ol-a', stylesCombo._.value );
 			assert.isTrue(stylesCombo._.list.isMarked('ol-a'));
@@ -49,7 +49,7 @@
 			bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li>^</li></ol></li></ol>' );
 
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen( editor );
+			stylesCombo.onOpen();
 
 			assert.areEqual( '', stylesCombo._.value );
 			assert.isFalse(stylesCombo._.list.isMarked('ol-a'));
@@ -65,7 +65,7 @@
 			bot.setHtmlWithSelection( '<ol class="ol-a"><li><ol><li><strong>asd^</strong></li></ol></li></ol>' );
 
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen( editor );
+			stylesCombo.onOpen();
 
 			assert.areEqual( '', stylesCombo._.value );
 			assert.isFalse(stylesCombo._.list.isMarked('ol-a'));
@@ -88,7 +88,7 @@
 			bot.setHtmlWithSelection( '<ul class="ul-a"><li><ul><li>^</li></ul></li></ul>' );
 
 			stylesCombo.createPanel( editor );
-			stylesCombo.onOpen( editor );
+			stylesCombo.onOpen();
 
 			assert.areEqual( '', stylesCombo._.value );
 			assert.isFalse(stylesCombo._.list.isMarked('ul-a'));
