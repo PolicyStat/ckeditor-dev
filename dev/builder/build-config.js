@@ -51,7 +51,7 @@ var CKBUILDER_CONFIG = {
 	],
 	plugins : {
 		'a11yhelp' : 0,
-		'autogrow' : 1,
+		'autogrow' : 0,
                 'autolink': 1,
 		'basicstyles' : 1,
 		'blockquote' : 1,
