@@ -50,7 +50,7 @@ var CKBUILDER_CONFIG = {
 		'tests'
 	],
 	plugins : {
-		'a11yhelp' : 1,
+		'a11yhelp' : 0,
 		'autogrow' : 1,
                 'autolink': 1,
 		'basicstyles' : 1,
