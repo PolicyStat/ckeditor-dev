@@ -921,3 +921,26 @@
 		<li>d</li>
 	</ul>
 </textarea>
+
+<textarea id="delete_into_nested_list3">
+	<ul>
+		<li>a
+			<ul>
+				<li>b</li>
+				<li>^</li>
+			</ul>
+		</li>
+		<li><strong></strong></li>
+		<li>c</li>
+	</ul>
+	=>
+	<ul>
+		<li>a
+			<ul>
+				<li>b</li>
+				<li><strong></strong>^</li>
+			</ul>
+		</li>
+		<li>c</li>
+	</ul>
+</textarea>
