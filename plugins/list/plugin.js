@@ -1096,7 +1096,8 @@
 									startItem.getName() == 'li' &&
 									startItem.getParent().getName() in listNodeNames &&
 									!( commonAncestor.getName() in listNodeNames ) &&
-									!( li.contains( startItem ) )
+									!( li.contains( startItem ) ) &&
+									!( li.equals ( startItem ) ) // in Firefox/IE, sublists can incorrectly be detected as being separate lists if not for this
 								) {
 									editor.fire( 'saveSnapshot' );
 									var oldParent = startItem.getParent(),

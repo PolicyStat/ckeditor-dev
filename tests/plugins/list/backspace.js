@@ -120,6 +120,7 @@ addTests( 'test delete nested neighboring lists', 'delete_neighboring_nested_lis
 // prevent blowing up cases where the neighboring lists are in the same tree
 addTests( 'test delete list parent sibling into nested list', 'delete_into_nested_list1', DEL);
 addTests( 'test delete list parent sibling and child into nested list', 'delete_into_nested_list2', DEL);
+addTests( 'test crash when target has a empty inline tag', 'delete_into_nested_list3', DEL); // due to data filters this test doesn't test 100% of the case
 
 // word-like backspace behaviour
 addTests( 'test backspace neighboring ol and ul lists', 'backspace_neighboring_lists1', BACKSPACE );
