@@ -742,7 +742,8 @@
 				nextPath = new CKEDITOR.dom.elementPath( nextCursor.startContainer ),
 				nextLi = nextPath.contains( CKEDITOR.dtd.$listItem ),
 				nextList = nextPath.contains( CKEDITOR.dtd.$list ),
-				last;
+				last,
+				emptyInline;
 
 		// Remove bogus node the current block/pseudo block.
 		if ( pathBlock ) {
@@ -759,6 +760,14 @@
 		last = frag.getLast();
 		if ( last && last.type == CKEDITOR.NODE_ELEMENT && last.is( 'br' ) )
 			last.remove();
+
+		// remove all empty inlines in the fragment
+
+		while ( emptyInline = frag.getLast( function ( node ) {
+			return node.type === CKEDITOR.NODE_ELEMENT && node.isEmptyInlineRemoveable();
+		} )) {
+			emptyInline.remove();
+		}
 
 		// Insert fragment at the range position.
 		var nextNode = cursor.startContainer.getChild( cursor.startOffset );
