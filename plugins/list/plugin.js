@@ -763,9 +763,11 @@
 
 		// remove all empty inlines in the fragment
 
-		while ( emptyInline = frag.getLast( function ( node ) {
+		function isEmptyInlineEval( node ) {
 			return node.type === CKEDITOR.NODE_ELEMENT && node.isEmptyInlineRemoveable();
-		} )) {
+		}
+
+		while ( emptyInline = frag.getLast( isEmptyInlineEval )) {
 			emptyInline.remove();
 		}
 
