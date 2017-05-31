@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -563,10 +563,27 @@
 			// active in the editing area (IE|WebKit).
 			[ ( /^on/ ), 'data-cke-pa-on' ],
 
+			// Prevent iframe's srcdoc attribute from being evaluated in the editable.
+			[ ( /^srcdoc/ ), 'data-cke-pa-srcdoc' ],
+
 			// Don't let some old expando enter editor. Concerns only IE8,
 			// but for consistency remove on all browsers.
 			[ ( /^data-cke-expando$/ ), '' ]
-		]
+		],
+
+		elements: {
+			// Prevent iframe's src attribute with javascript code or data protocol from being evaluated in the editable.
+			iframe: function( element ) {
+				if ( element.attributes && element.attributes.src ) {
+
+					var src = element.attributes.src.toLowerCase().replace( /[^a-z]/gi, '' );
+					if ( src.indexOf( 'javascript' ) === 0 || src.indexOf( 'data' ) === 0 ) {
+						element.attributes[ 'data-cke-pa-src' ] = element.attributes.src;
+						delete element.attributes.src;
+					}
+				}
+			}
+		}
 	};
 
 	// Disable form elements editing mode provided by some browsers. (#5746)
@@ -971,7 +988,7 @@
  *		{@link CKEDITOR.htmlParser.fragment} {@link CKEDITOR.htmlParser.element}.
  *	* 5-9: Data is available in the parsed format, but {@link CKEDITOR.htmlDataProcessor#dataFilter}
  *		is not applied yet.
- *	* 6: Data is filtered with the {CKEDITOR.filter content filter}.
+ *	* 6: Data is filtered with the {@link CKEDITOR.filter content filter}.
  *	* 10: Data is processed with {@link CKEDITOR.htmlDataProcessor#dataFilter}.
  *	* 10-14: Data is available in the parsed format and {@link CKEDITOR.htmlDataProcessor#dataFilter}
  *		has already been applied.

@@ -4,7 +4,11 @@
 
 	'use strict';
 
-	bender.editor = true;
+	bender.editor = {
+		config: {
+			removePlugins: 'tableselection'
+		}
+	};
 
 	var getInnerHtml = bender.tools.getInnerHtml,
 		fixHtml = bender.tools.fixHtml,
@@ -535,6 +539,21 @@
 			// Internet Explorer 8 return color without the spaces.
 			assert.areSame( fixHtml( '<p><span style="background-color: rgb(255, 255, 0);">Text </span>with<span style="background-color: rgb(255, 255, 0);"> background</span></p>' ),
 				fixHtml( getInnerHtml( ct ).replace( /rgb\(255,255,0\)/g, 'rgb(255, 255, 0)' ) ) );
+		},
+
+		// #13062
+		'test forcing remove of boundary element': function() {
+			var editor = this.editor,
+				bot = this.editorBot,
+				style = new CKEDITOR.style( { element: 'b', type: CKEDITOR.STYLE_INLINE, alwaysRemoveElement: 1 } );
+
+			bot.setHtmlWithSelection( '<p><b>^example</b></p>' );
+			editor.removeStyle( style );
+			assert.areSame( '<p>^example</p>', bot.htmlWithSelection() );
+
+			bot.setHtmlWithSelection( '<p><b>example^</b></p>' );
+			editor.removeStyle( style );
+			assert.areSame( '<p>example^</p>', bot.htmlWithSelection() );
 		},
 
 		'test filler is preserved when applying block style': function() {

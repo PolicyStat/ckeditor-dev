@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -76,6 +76,16 @@
 			}
 
 			return bender.tools.fixHtml( html, stripLineBreaks );
+		},
+
+		env: {
+			/*
+			 * Tells whether current environment is running on a mobile browser.
+			 *
+			 * It's different from deprecated {@link CKEDITOR.env.mobile} in a way that we are just
+			 * interested in checking whether this is iOS or most popular Android env.
+			 */
+			mobile: CKEDITOR.env.iOS || navigator.userAgent.toLowerCase().indexOf( 'android' ) !== -1
 		},
 
 		fixHtml: function( html, stripLineBreaks, toLowerCase ) {
@@ -240,8 +250,10 @@
 		 * @param {Boolean} [fixStyles] Pass inline styles through {@link CKEDITOR.tools#parseCssText}.
 		 * @param {Boolean} [fixNbsp] Encode `\u00a0`.
 		 * @param {Boolean} [noTempElements] Strip elements with `data-cke-temp` attributes (e.g. hidden selection container).
+		 * @param {CKEDITOR.htmlParser.filter[]} [customFilters] Array of filters that will be applied to parsed HTML.
+		 * This parameter was added in 4.7.0.
 		 */
-		compatHtml: function( html, noInterWS, sortAttributes, fixZWS, fixStyles, fixNbsp, noTempElements ) {
+		compatHtml: function( html, noInterWS, sortAttributes, fixZWS, fixStyles, fixNbsp, noTempElements, customFilters ) {
 			// Remove all indeterminate white spaces.
 			if ( noInterWS ) {
 				html = html.replace( /[\t\n\r ]+(?=<)/g, '' ).replace( />[\t\n\r ]+/g, '>' );
@@ -256,6 +268,12 @@
 
 			if ( sortAttributes ) {
 				writer.sortAttributes = true;
+			}
+
+			if ( customFilters ) {
+				CKEDITOR.tools.array.forEach( customFilters, function( filter ) {
+					fragment.filterChildren( filter );
+				} );
 			}
 
 			fragment.writeHtml( writer );
@@ -580,6 +598,8 @@
 		 * @deprecated Use {@link bender.tools.range#setWithHtml} instead.
 		 */
 		setHtmlWithRange: function( element, html, root ) {
+			var ranges = [];
+
 			root = root instanceof CKEDITOR.dom.document ?
 				root.getBody() : root || CKEDITOR.document.getBody();
 
@@ -609,9 +629,8 @@
 				element.setHtml( html );
 			}
 
-			var ranges = [],
-				// Walk prepared to traverse the inner dom tree of this element.
-				walkerRange = new CKEDITOR.dom.range( root );
+			// Walk prepared to traverse the inner dom tree of this element.
+			var walkerRange = new CKEDITOR.dom.range( root );
 
 			walkerRange.selectNodeContents( element );
 			var wallker = new CKEDITOR.dom.walker( walkerRange ),

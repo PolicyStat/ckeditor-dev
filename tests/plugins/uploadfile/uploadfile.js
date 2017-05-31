@@ -1,7 +1,8 @@
 /* bender-tags: editor,unit,clipboard,widget */
 /* bender-ckeditor-plugins: uploadwidget,uploadimage,toolbar,image */
 /* bender-include: %BASE_PATH%/plugins/clipboard/_helpers/pasting.js */
-/* global pasteFiles */
+/* bender-include: _helpers/waitForImage.js */
+/* global pasteFiles, waitForImage */
 
 'use strict';
 
@@ -105,7 +106,7 @@ bender.test( {
 		loader.url = '%BASE_PATH%_assets/sample.txt';
 		loader.changeStatus( 'uploaded' );
 
-		assert.sameData( '<p><a href="/tests/_assets/sample.txt" target="_blank">name.txt</a></p>', editor.getData() );
+		assert.sameData( '<p><a href="%BASE_PATH%_assets/sample.txt" target="_blank">name.txt</a></p>', editor.getData() );
 		assert.areSame( 0, editor.editable().find( 'a[data-widget="uploadfile"]' ).count() );
 
 		assert.areSame( 1, loadAndUploadCount );
@@ -133,7 +134,7 @@ bender.test( {
 		loader.url = '%BASE_PATH%_assets/sample.txt';
 		loader.changeStatus( 'uploaded' );
 
-		assert.sameData( '<p><a href="/tests/_assets/sample.txt" target="_blank">name.txt</a></p>', editor.getData() );
+		assert.sameData( '<p><a href="%BASE_PATH%_assets/sample.txt" target="_blank">name.txt</a></p>', editor.getData() );
 		assert.areSame( 0, editor.editable().find( 'a[data-widget="uploadfile"]' ).count() );
 
 		assert.areSame( 1, loadAndUploadCount );
@@ -158,8 +159,9 @@ bender.test( {
 		assert.areSame( 1, editor.editable().find( 'img[data-widget="uploadimage"]' ).count() );
 		assert.areSame( '', editor.getData(), 'getData on uploading.' );
 
-		// IE needs to wait for image to be loaded so it can read width and height of the image.
-		wait( function() {
+		var image = editor.editable().find( 'img[data-widget="uploadimage"]' ).getItem( 0 );
+
+		waitForImage( image, function() {
 			loader.url = IMG_URL;
 			loader.changeStatus( 'uploaded' );
 
@@ -169,6 +171,6 @@ bender.test( {
 			assert.areSame( 1, loadAndUploadCount );
 			assert.areSame( 0, uploadCount );
 			assert.areSame( 'http://foo/upload', lastUploadUrl );
-		}, 10 );
+		} );
 	}
 } );

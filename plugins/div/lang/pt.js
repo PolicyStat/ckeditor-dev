@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 CKEDITOR.plugins.setLang( 'div', 'pt', {
@@ -7,11 +7,11 @@ CKEDITOR.plugins.setLang( 'div', 'pt', {
 	advisoryTitleInputLabel: 'Título',
 	cssClassInputLabel: 'Classes de folhas de estilo',
 	edit: 'Editar Div',
-	inlineStyleInputLabel: 'Estilho em Linha',
+	inlineStyleInputLabel: 'Estilo na etiqueta',
 	langDirLTRLabel: 'Esquerda para a direita (EPD)',
 	langDirLabel: 'Orientação de idioma',
 	langDirRTLLabel: 'Direita para a Esquerda (DPE)',
-	languageCodeInputLabel: 'Codigo do Idioma',
+	languageCodeInputLabel: 'Código do idioma',
 	remove: 'Remover Div',
 	styleSelectLabel: 'Estilo',
 	title: 'Criar Div',

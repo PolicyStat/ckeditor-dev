@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -65,7 +65,7 @@ CKEDITOR.plugins.setLang( 'a11yhelp', 'ja', {
 			legend: '${link} をクリック'
 		},
 			{
-			name: 'ツールバーを縮める',
+			name: 'ツールバーをたたむ',
 			legend: '${toolbarCollapse} をクリック'
 		},
 			{
@@ -73,7 +73,7 @@ CKEDITOR.plugins.setLang( 'a11yhelp', 'ja', {
 			legend: '${accessPreviousSpace} を押すとカーソルより前にあるカーソルキーで入り込めないスペースへ移動できます。例えば、HRエレメントが2つ接している場合などです。離れた場所へは、複数回キーを押します。'
 		},
 			{
-			name: '次のカーソル移動のできないポイントへ',
+			name: '次のカーソルポイントへ移動する',
 			legend: '${accessNextSpace} を押すとカーソルより後ろにあるカーソルキーで入り込めないスペースへ移動できます。例えば、HRエレメントが2つ接している場合などです。離れた場所へは、複数回キーを押します。'
 		},
 			{
