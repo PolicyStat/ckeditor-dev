@@ -22,17 +22,17 @@ so we updated a few steps to make them repeatable. You could find them below.
 - Install package requirements with `npm install` in the source root
 
 ### Prepare tests run
-- Make sure your current node version is 10x and all requirements installed
+- Make sure your current node version is 10x and all requirements are installed
 - Initiate bender environment with `npx bender init`
 
 ### Tests run
-- Make sure your current node version is 10x, all requirements installed and bender configured
+- Make sure your current node version is 10x, all requirements are installed and bender configured
 - Start bender server with `npx bender server run`
 - Open http://localhost:1030 in your browser
 - Push the button to run tests
 
 ### Manual tests
-- Make sure your current node version is 10x and all requirements installed
+- Make sure your current node version is 10x and all requirements are installed
 - `cd %source root%/samples`
 - Start test server with `npx http-server`
 - Open http://127.0.0.1:8080/ in your browser and play with CKEditor
