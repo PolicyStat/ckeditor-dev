@@ -67,6 +67,19 @@
 
 		// #11439
 		'test load and update field values (#5)': function() {
+			this.doTest( 'table-6', function( dialog ) {
+				assert.areSame( '', dialog.getValueOf( 'info', 'height' ) );
+				assert.areSame( 'px', dialog.getValueOf( 'info', 'widthType' ) );
+				assert.areSame( '', dialog.getValueOf( 'info', 'wordWrap' ) );
+				assert.areSame( '', dialog.getValueOf( 'info', 'rowSpan' ) );
+
+				dialog.setValueOf( 'info', 'width', 100 );
+				dialog.setValueOf( 'info', 'hAlign', 'right' );
+			} );
+		},
+
+		// #11439
+		'test load and update field values (#6)': function() {
 			this.doTest( 'table-7', function( dialog ) {
 				assert.areSame( '50', dialog.getValueOf( 'info', 'width' ) );
 				assert.areSame( 'px', dialog.getValueOf( 'info', 'widthType' ) );
@@ -76,7 +89,7 @@
 		},
 
 		// #11439
-		'test load and update field values (#6)': function() {
+		'test load and update field values (#7)': function() {
 			this.doTest( 'table-8', function( dialog ) {
 				assert.areSame( '50', dialog.getValueOf( 'info', 'width' ) );
 				assert.areSame( '', dialog.getValueOf( 'info', 'widthType' ) );
@@ -86,7 +99,16 @@
 		},
 
 		// #11439
-		'test load and update field values (#7)': function() {
+		'test load and update field values (#8)': function() {
+			this.doTest( 'table-9', function( dialog ) {
+				assert.areSame( '', dialog.getValueOf( 'info', 'cellType' ) );
+
+				dialog.setValueOf( 'info', 'cellType', 'td' );
+			} );
+		},
+
+		// #11439
+		'test load and update field values (#9)': function() {
 			this.doTest( 'table-10', function( dialog ) {
 				assert.areSame( '', dialog.getValueOf( 'info', 'width' ) );
 				assert.areSame( '', dialog.getValueOf( 'info', 'widthType' ) );
@@ -96,7 +118,7 @@
 		},
 
 		// #11439
-		'test load and update field values (#8)': function() {
+		'test load and update field values (#10)': function() {
 			this.doTest( 'table-11', function( dialog ) {
 				assert.areSame( '', dialog.getValueOf( 'info', 'width' ) );
 				assert.areSame( '', dialog.getValueOf( 'info', 'widthType' ) );
