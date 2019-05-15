@@ -11,8 +11,10 @@ either build the editor (see below) or use an official release available on the
 [CKEditor website](http://ckeditor.com).
 
 ## Code Installation and configuration
+[CKEditor test guide](https://ckeditor.com/docs/ckeditor4/latest/guide/dev_tests.html) looks out of date, 
+so we updated a few steps to make them repeatable. You could find them below.
 
-### Requirements retrival
+### Requirements retrieval
 
 - Follow [official guide](https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script) and instal latest **nvm**
 - Install latest node 10x LTS version with `nvm install --lts=dubnium`
@@ -21,7 +23,7 @@ either build the editor (see below) or use an official release available on the
 
 ### Prepare tests run
 - Make sure your current node version is 10x and all requirements installed
-- Initialte bender environment with `npx bender init`
+- Initiate bender environment with `npx bender init`
 
 ### Tests run
 - Make sure your current node version is 10x, all requirements installed and bender configured
