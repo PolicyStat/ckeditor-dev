@@ -18,21 +18,21 @@ so we updated a few steps to make them repeatable. You could find them below.
 
 - Follow [official guide](https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script) and instal latest **nvm**
 - Install latest node 10x LTS version with `nvm install --lts=dubnium`
-- Make sure you're using it with `nvm use --lts=dubnium`
+- Verify you're using it with `nvm use --lts=dubnium`
 - Install package requirements with `npm install` in the source root
 
 ### Prepare tests run
-- Make sure your current node version is 10x and all requirements are installed
+- Verify your current node version is 10x and all requirements are installed
 - Initiate bender environment with `npx bender init`
 
 ### Tests run
-- Make sure your current node version is 10x, all requirements are installed and bender configured
+- Verify your current node version is 10x, all requirements are installed and bender configured
 - Start bender server with `npx bender server run`
 - Open http://localhost:1030 in your browser
 - Push the button to run tests
 
 ### Manual tests
-- Make sure your current node version is 10x and all requirements are installed
+- Verify your current node version is 10x and all requirements are installed
 - `cd %source root%/samples`
 - Start test server with `npx http-server`
 - Open http://127.0.0.1:8080/ in your browser and play with CKEditor
