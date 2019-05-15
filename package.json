@@ -5,6 +5,7 @@
 	"devDependencies": {
 		"benderjs-coverage": "^0.2.1",
 		"benderjs": "^0.4.1",
+		"benderjs-cli": "^0.1.1",
 		"benderjs-jquery": "^0.3.0",
 		"benderjs-sinon": "^0.3.1",
 		"benderjs-yui": "^0.3.2",
@@ -17,9 +18,14 @@
 		"grunt-contrib-concat": "^0.5.1",
 		"grunt-jsduck": "^1.0.1",
 		"grunt-githooks": "^0.3.1",
+		"http-server": "^0.11.1",
 		"less": "^2.5.0",
 		"shelljs": "^0",
 		"cksource-samples-framework": "^1.0.1"
+	},
+	"engines": {
+		"node": ">=10.0.0 <11",
+		"npm": ">=6.0.0 <7"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"

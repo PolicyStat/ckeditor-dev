@@ -10,10 +10,30 @@ because the user experience will be very limited. For that purpose, you should
 either build the editor (see below) or use an official release available on the
 [CKEditor website](http://ckeditor.com).
 
-## Code Installation
+## Code Installation and configuration
 
-There is no special installation procedure to install the development code.
-Simply clone it to any local directory and you are set.
+### Requirements retrival
+
+- Follow [official guide](https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script) and instal latest **nvm**
+- Install latest node 10x LTS version with `nvm install --lts=dubnium`
+- Make sure you're using it with `nvm use --lts=dubnium`
+- Install package requirements with `npm install` in the source root
+
+### Prepare tests run
+- Make sure your current node version is 10x and all requirements installed
+- Initialte bender environment with `npx bender init`
+
+### Tests run
+- Make sure your current node version is 10x, all requirements installed and bender configured
+- Start bender server with `npx bender server run`
+- Open http://localhost:1030 in your browser
+- Push the button to run tests
+
+### Manual tests
+- Make sure your current node version is 10x and all requirements installed
+- `cd %source root%/samples`
+- Start test server with `npx http-server`
+- Open http://127.0.0.1:8080/ in your browser and play with CKEditor
 
 ## Available Branches
 
