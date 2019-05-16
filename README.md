@@ -1,3 +1,12 @@
+# :warning:PolicyStat Readme:warning:
+
+PolicyStat uses [pstat](https://github.com/PolicyStat/ckeditor-dev/tree/pstat) branch. 
+Please read Readme there before do anything in this repo.
+
+Official readme is belowю
+
+:arrow_down::arrow_down::arrow_down::arrow_down::arrow_down::arrow_down::arrow_down:
+
 # CKEditor 4 - The best browser-based WYSIWYG editor
 
 [![devDependency Status](https://david-dm.org/ckeditor/ckeditor-dev/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor-dev#info=devDependencies)
