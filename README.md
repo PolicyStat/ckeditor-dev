@@ -3,7 +3,7 @@
 PolicyStat uses [pstat](https://github.com/PolicyStat/ckeditor-dev/tree/pstat) branch. 
 Please read Readme there before do anything in this repo.
 
-Official readme is belowю
+Official readme is below.
 
 :arrow_down::arrow_down::arrow_down::arrow_down::arrow_down::arrow_down::arrow_down:
 
