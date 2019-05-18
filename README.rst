@@ -1,3 +1,6 @@
+:warning: This PolicyStat branch readme. For official Readme please refer to
+`master branch <https://github.com/PolicyStat/ckeditor-dev/tree/master>`_:warning:
+
 ##########################################
 CKEditor- The PolicyStat "Enhanced Editor"
 ##########################################
@@ -36,27 +39,24 @@ so we updated a few steps to make them repeatable. You could find them below.
 Requirements retrieval
 ======================
 
-- Follow `official guide <https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script>`_ and install latest **nvm**
-- Install latest node 10x LTS version with
-   ``nvm install --lts=dubnium``
-- Verify you're using it with ``nvm use --lts=dubnium``
-- Install package requirements with ``npm install`` in the source root
+* Follow `official guide <https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script>`_ and install latest **nvm**
+* Install latest node 10x LTS version with ``nvm install --lts=dubnium``
+* Verify you're using it with ``nvm use --lts=dubnium``
+* Install package requirements with ``npm install`` in the source root
 
 Prepare tests run
 =================
 
-- Verify your current node version is 10x and all requirements
-   are installed
-- Initiate bender environment with ``npx bender init``
+* Verify your current node version is 10x and all requirements are installed
+* Initiate bender environment with ``npx bender init``
 
 Tests run
 =========
 
-- Verify your current node version is 10x, all requirements
-   are installed and bender configured
-- Start bender server with ``npx bender server run``
-- Open http://localhost:1030 in your browser
-- Push the button to run tests
+* Verify your current node version is 10x, all requirements are installed and bender configured
+* Start bender server with ``npx bender server run``
+* Open http://localhost:1030 in your browser
+* Push the button to run tests
 
 Manual tests
 ============
@@ -70,6 +70,18 @@ Updating plugins
 ================
 
 There are a few plugins in
+`site_media/lib/ckeditor-common/plugins <https://github.com/PolicyStat/PolicyStat/tree/master/site_media/lib/ckeditor-common/plugins>`_
+
+They are kept in separate repos:
+
+* `autoid <https://github.com/PolicyStat/ckeditor-plugin-autoid-headings>`_
+* `detabler <https://github.com/PolicyStat/ckeditor-plugin-detabler>`_
+* `highlightbutton <https://github.com/PolicyStat/ckeditor-plugin-highlight-button>`_
+* `nanospell <https://github.com/PolicyStat/ckeditor-spell-check-plugin-js-dev-edge>`_
+* prebutton
+* removenbsp
+* `structuredheadings <https://github.com/PolicyStat/ckeditor-plugin-structured-headings>`_
+
 
 Feature Flags
 =============
@@ -162,50 +174,27 @@ one can do the following:
     var allowedContent = CKEDITOR.instances['id_doc-html'].filter.allowedContent
     var divRules = allowedContent.filter(function(rule) { return rule.elements.div } );
 
-The
-``featureName``
-of each
-rule
-can be used to determine
-which
-plugin
-generated the
-rule.
+The ``featureName`` of each rule can be used to determine which plugin generated the rule.
 
 * `CKEditor 4 advanced filter
-  <http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter>`_
+  <https://ckeditor.com/docs/ckeditor4/latest/guide/dev_advanced_content_filter.html>`_
 
 Updating Installed Plugins
 ==========================
 
-There are
-two separate
-editor configs,
-one for
-general use
-and one for
-cleaning.
+There are two separate editor configs, one for general use and one for cleaning.
 
 ``site_media/lib/ckeditor-common/editor_config.js``
 ``site_media/lib/ckeditor-common/cleaner_config.js``
 
-To add a new plugin,
-edit the
-``plugins`` variable
-in either or both
-of these configs
-as needed.
+To add a new plugin, edit the ``plugins`` variable in either
+or both of these configs as needed.
 
-If you attempt
-to load a plugin
-that does not exist,
-a script error
-will occur
-in all
-CKEditor selenium tests.
+If you attempt to load a plugin that does not exist, a script error will occur
+in all CKEditor selenium tests.
 
 Useful links
 ============
 
 * `CKEditor 4 docs
-  <http://docs.ckeditor.com/>`_
+  <https://ckeditor.com/docs/ckeditor4/latest/index.html>`_
