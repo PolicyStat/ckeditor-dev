@@ -1,5 +1,4 @@
-:warning: This PolicyStat branch readme. For official Readme please refer to
-`master branch <https://github.com/PolicyStat/ckeditor-dev/tree/master>`_:warning:
+:warning:This PolicyStat branch readme. For official Readme please refer to `master branch <https://github.com/PolicyStat/ckeditor-dev/tree/master>`_:warning:
 
 ##########################################
 CKEditor- The PolicyStat "Enhanced Editor"
@@ -23,6 +22,7 @@ Currently, CKEditor is enabled as the editor for the following pages:
 
 on select customers.
 
+
 PolicyStat fork
 ===============
 
@@ -31,24 +31,28 @@ We currently fork CKEditor to allow for a few deviations from core functionality
 To make it easier to keep up with CKEditor core updates, these differences are captured mainly
 in the `pstat <https://github.com/PolicyStat/ckeditor-dev/tree/pstat>`_ branch of our fork on GitHub.
 
+
 Code Installation and configuration
 ===================================
 `CKEditor test guide <https://ckeditor.com/docs/ckeditor4/latest/guide/dev_tests.html>`_ looks out of date,
 so we updated a few steps to make them repeatable. You could find them below.
 
+
 Requirements retrieval
 ======================
 
-* Follow `official guide <https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script>`_ and install latest **nvm**
+* Follow `the official guide <https://github.com/nvm-sh/nvm/blob/master/README.md#install--update-script>`_ and install latest **nvm**
 * Install latest node 10x LTS version with ``nvm install --lts=dubnium``
 * Verify you're using it with ``nvm use --lts=dubnium``
 * Install package requirements with ``npm install`` in the source root
 
-Prepare tests run
-=================
+
+Prepare tests to run
+====================
 
 * Verify your current node version is 10x and all requirements are installed
 * Initiate bender environment with ``npx bender init``
+
 
 Tests run
 =========
@@ -58,6 +62,7 @@ Tests run
 * Open http://localhost:1030 in your browser
 * Push the button to run tests
 
+
 Manual tests
 ============
 
@@ -66,13 +71,14 @@ Manual tests
 - Start test server with ``npx http-server``
 - Open http://127.0.0.1:8080/ in your browser and play with CKEditor
 
+
 Updating plugins
 ================
 
 There are a few plugins in
 `site_media/lib/ckeditor-common/plugins <https://github.com/PolicyStat/PolicyStat/tree/master/site_media/lib/ckeditor-common/plugins>`_
 
-They are kept in separate repos:
+They are kept in separate repos and updated manually by coping:
 
 * `autoid <https://github.com/PolicyStat/ckeditor-plugin-autoid-headings>`_
 * `detabler <https://github.com/PolicyStat/ckeditor-plugin-detabler>`_
@@ -81,6 +87,8 @@ They are kept in separate repos:
 * prebutton
 * removenbsp
 * `structuredheadings <https://github.com/PolicyStat/ckeditor-plugin-structured-headings>`_
+
+These plugins packed together with CKEditor by symlinking during  update_ckeditor.py run.
 
 
 Feature Flags
@@ -95,6 +103,7 @@ Since changing the editor is a pretty big deal, there are a number of feature fl
   ``site_media/lib/ckeditor`` or
   ``site_media/lib/ckeditor-new``
   when editing is already enabled
+
 
 Building a CKEditor Release
 ===========================
@@ -115,59 +124,37 @@ by the following process:
 * ``./scripts/update_ckeditor.py --source ../ckeditor-dev/dev/builder/release/ckeditor``
   (the output directory of build.sh)
 
-Unfortunately,
-CKBuilder
-does not support outputting source maps.
+Unfortunately, CKBuilder does not support outputting source maps.
 
-For development, it may be worth running
-``build.sh --leave-js-unminified``
-to output an unminified version
-for local debugging.
+For development, it may be worth running ``build.sh --leave-js-unminified``
+to output an unminified version for local debugging.
 
-In the case when you want to bypass the
-version promotion process
+In the case when you want to bypass the version promotion process
 and update the feature-flag-off
 ``ckeditor``,
 ``--old`` can be passed into
 ``update_ckeditor.py``
 
+
 Making Sense of Filters
 =======================
 
-CKEditor filters
-basically work as follows:
+CKEditor filters basically work as follows:
 
 Automatic filter +
 ``extraAllowedContent`` -
 ``disallowedContent`` =
 final set of content
 
-``extraAllowedContent``:
-used to allow certain
-legacy styling
-to work.
+``extraAllowedContent``: used to allow certain legacy styling to work.
 
 ``disallowedContent``:
-used to blacklist
-specific properties
-from
-certain elements,
-like tables.
+used to blacklist specific properties from certain elements, like tables.
 
-The
-automatic filter
-can be fairly complex,
-as there are many
-installed plugins.
-Thankfully, the final
-result can be
-debugged with
-the Chrome developer console.
+The automatic filter can be fairly complex, as there are many installed plugins.
+Thankfully, the final result can be debugged with the Chrome developer console.
 
-For example,
-to obtain
-all rules that allow divs,
-one can do the following:
+For example, to obtain all rules that allow divs, one can do the following:
 
 .. code-block:: javascript
 
@@ -178,6 +165,7 @@ The ``featureName`` of each rule can be used to determine which plugin generated
 
 * `CKEditor 4 advanced filter
   <https://ckeditor.com/docs/ckeditor4/latest/guide/dev_advanced_content_filter.html>`_
+
 
 Updating Installed Plugins
 ==========================
@@ -192,6 +180,7 @@ or both of these configs as needed.
 
 If you attempt to load a plugin that does not exist, a script error will occur
 in all CKEditor selenium tests.
+
 
 Useful links
 ============
