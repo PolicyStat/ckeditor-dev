@@ -1,0 +1,62 @@
+/*
+Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+@import url("editor.css");
+
+a.cke_button_disabled, a.cke_button_disabled:hover, a.cke_button_disabled:focus, a.cke_button_disabled:active {
+    filter: alpha(opacity=30)
+}
+
+.cke_button_off:hover, .cke_button_off:focus, .cke_button_off:active {
+    filter: alpha(opacity=100)
+}
+
+.cke_combo_disabled .cke_combo_inlinelabel, .cke_combo_disabled .cke_combo_open {
+    filter: alpha(opacity=30)
+}
+
+.cke_toolbox_collapser {
+    border: 1px solid #a6a6a6
+}
+
+.cke_toolbox_collapser .cke_arrow {
+    margin-top: 1px
+}
+
+.cke_top, .cke_contents, .cke_bottom {
+    width: 100%
+}
+
+.cke_button_arrow {
+    font-size: 0
+}
+
+.cke_rtl .cke_toolgroup, .cke_rtl .cke_toolbar_separator, .cke_rtl .cke_button, .cke_rtl .cke_button *, .cke_rtl .cke_combo, .cke_rtl .cke_combo *, .cke_rtl .cke_path_item, .cke_rtl .cke_path_item *, .cke_rtl .cke_path_empty {
+    float: none
+}
+
+.cke_rtl .cke_toolgroup, .cke_rtl .cke_toolbar_separator, .cke_rtl .cke_combo_button, .cke_rtl .cke_combo_button *, .cke_rtl .cke_button, .cke_rtl .cke_button_icon {
+    display: inline-block;
+    vertical-align: top
+}
+
+.cke_rtl .cke_button_icon {
+    float: none
+}
+
+.cke_resizer {
+    width: 10px
+}
+
+.cke_source {
+    white-space: normal
+}
+
+.cke_bottom {
+    position: static
+}
+
+.cke_colorbox {
+    font-size: 0
+}
