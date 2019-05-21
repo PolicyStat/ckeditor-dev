@@ -18,9 +18,11 @@ Pages Using CKEditor
 
 Currently, CKEditor is enabled as the editor for the following pages:
 
+* Document edit
+* Document admin override
 * Document clean
 
-on select customers.
+On almost all customers except one.
 
 
 PolicyStat fork
