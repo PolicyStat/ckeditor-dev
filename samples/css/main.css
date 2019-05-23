@@ -1,0 +1,1553 @@
+/** General **/
+body {
+	margin:0;
+	padding:0;
+	font-family:Arial,Helvetica,sans-serif;
+	border-left:#BFDADE;
+	border-right:#BFDADE;
+	-ms-overflow-style: scrollbar; /* required to work around issues with the auto hide scrollbar being incorrectly enabled, and blocking clicks on the right & bottom */
+}
+a:link, a:visited {
+	cursor: pointer; /* Needed so we can do <a> without href */
+	color:#3966b0;
+}
+a:hover {
+	color:#000000;
+}
+a .restricted_icon {
+	border: none;
+}
+a img {
+	border: none;
+}
+a.img_link img {
+	border: 2px solid #3966b0;
+}
+a.img_link img:hover {
+	border-color: #000000;
+}
+a.section, /* for linking within the same document */
+a.section:hover {
+	color: inherit !important;
+	cursor: inherit !important;
+	text-decoration: inherit !important;
+}
+p {
+	margin: 10px;
+}
+h2 {
+	margin-left: 10px;
+}
+
+/** Top bar **/
+#top {
+	margin:auto;
+	height:27px;
+	background-image:url('../images/repeatTop.gif');
+	background-repeat:repeat-x;
+	min-width: 765px; /* match the min-width of masterContainer */
+}
+#ie7 #top {
+	background-image:url('{{ SITE_MEDIA_ABSOLUTE_URL }}images/repeatTop.gif?skip-data-uri');
+}
+.top_float,
+.switch-back-link {
+	height: 27px;
+	font-size: 11px;
+	z-index: 100;
+	display: inline-block;
+	vertical-align: top;
+}
+.top_float {
+	padding-top: 4px;
+}
+.proxy-switcher {
+	padding-top: 0px;
+}
+.logout, .login {
+	float: right;
+	margin-right: 10px;
+}
+.logout a,
+.logout a:visited,
+.logout a:active,
+.login a,
+.login a:visited,
+.login a:active {
+	color: white;
+	text-decoration:none;
+}
+#top a:hover, #top a:hover {
+	color: black;
+}
+.logout a.pending_notices {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #FFCC70;
+}
+.small_label {
+	color: white;
+}
+.hover-with-dropdown {
+	margin-left: 5px;
+	position: relative;
+}
+
+.hover-with-dropdown .change,
+.switch-back-link a {
+	color: white;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.hover-with-dropdown .accessible {
+	display: none;
+	background-color: white;
+	border: 1px solid black;
+	overflow-y: auto;
+	max-height: 20em;
+	position: absolute;
+}
+.hover-with-dropdown .accessible ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 2px;
+}
+.hover-with-dropdown .accessible ul li {
+	padding: 3px 5px;
+	white-space: nowrap;
+}
+
+/** Logo Header **/
+#masterContainer {
+	clear:both;
+	margin:auto;
+	min-height:490px;
+	min-width:765px;
+	background-color:#fff;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+#header {
+	clear:both;
+	height:50px;
+	min-width:765px;
+	margin-bottom: 5px;
+}
+#header .logo {
+	height: 50px;
+	width: 250px;
+}
+#header img {
+	height: 50px;
+	width: auto;
+	max-width: none;
+}
+.customer-logo {
+	float:left;
+}
+.pstat_logo {
+	float:right;
+}
+
+/** Navigation Tabs **/
+#navContainer {
+	margin: 0;
+	padding: 0;
+	height: 26px;
+	min-width: 765px;
+	border-bottom: 8px solid #d3d3d3;
+}
+#navContainer div.float_container {
+	float: left;
+	clear: both;
+	height: 26px;
+	overflow-y: hidden;
+}
+#navContainer span {
+	margin: 0;
+	padding: 0px 5px;
+	float: left;
+	height: 25px;
+	font-weight: bold;
+	line-height: 25px;
+	min-width: 107px;
+	border-radius: 5px 5px 0px 0px;
+	border: #d3d3d3 1px solid;
+	border-bottom: 0px;
+	text-decoration: none;
+	cursor: pointer;
+}
+.navOn, .navOff {
+	margin-top:8px;
+	color:#333333;
+	font-size:12px;
+	font-family:Arial,Helvetica,sans-serif;
+	text-align:center;
+}
+a .navOn, a .navOff, a:visited .navOn, a:visited .navOff {
+	text-decoration:none;
+	color:#333333;
+}
+.navOn {
+	background-color: #d3d3d3;
+	cursor: default;
+}
+
+/** Sub Navigation Bar **/
+#bar {
+	margin: 0;
+	padding: 3px;
+	min-width: 765px;
+	min-height: 30px;
+	background-color: #3966b0;
+	text-align: right;
+}
+body.policystat #search {
+	float: left;
+	clear: none;
+	margin: 1px 0 0 1px;
+	width: 274px;
+	white-space: nowrap;
+}
+.search_box {
+	width: 250px;
+	font-size: 18px;
+	padding-left: 20px;
+	background-image: url('../images/icons/search.gif');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#ie7 .search_box {
+	background-image:url('{{ SITE_MEDIA_ABSOLUTE_URL }}images/icons/search.gif?skip-data-uri');
+}
+#search_button {
+	font-size: 13px;
+}
+#search_bar_form {
+	margin:0;
+	padding:0;
+}
+#search_results {
+	margin-top:10px;
+}
+#subnav {
+	display: inline-block;
+	text-align: right;
+	line-height: 20px;
+}
+#subnav ul {
+	margin: 0;
+	margin-right: 5px;
+	padding: 0;
+	font-size: 0;
+}
+#subnav ul li {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	list-style-type: none;
+	white-space: nowrap;
+}
+#subnav a {
+	margin: 0;
+	padding: 0 8px;
+	border: 1px solid #ddd;
+	color: white;
+	font-weight: bold;
+	font-size: 13px;
+	font-family: Arial,Helvetica,sans-serif;
+	text-decoration: none;
+}
+#subnav a:hover {
+	color: #113670;
+	background: #ddd;
+}
+#subnav a:hover i {
+	color: #113670;
+}
+
+#ie7 #subnav a {
+	/* Fix subnav border issue with font-awesome icons in IE7 */
+	line-height: 1em;
+}
+
+#ie7 #subnav ul li {
+	display: inline;
+}
+
+
+/** Announcements **/
+.announcement {
+	clear: both;
+	margin: 5px 15% 5px 15%;
+	padding: 0.2em;
+	text-align: center;
+	color: black;
+	font-size: 20px;
+	background-color: #FFCC70;
+	border: 2px solid #A67215;
+}
+.announcement .hide_button {
+	float: right;
+	background-image: url('../images/icons/grey_x.gif');
+	background-repeat: no-repeat;
+	width: 22px;
+	height: 18px;
+	text-decoration: none;
+	overflow: hidden;
+	border: none;
+}
+#ie7 .announcement .hide_button {
+	background-image:url('{{ SITE_MEDIA_ABSOLUTE_URL }}images/grey_x.gif?skip-data-uri');
+}
+
+/** Content **/
+#content {
+	clear:both;
+	min-width:763px;
+	background-color:#fff;
+	border-left:1px solid #999;
+	border-right:1px solid #999;
+	border-bottom:1px solid #999;
+	padding-bottom: 1em;
+}
+#footer {
+	clear:both;
+	height:1em;
+	min-width:765px;
+	background-color:#999;
+}
+.copyright {
+	float:right;
+	height:20px;
+	margin-right:10px;
+}
+.copyright span {
+	margin:4px auto 0 auto;
+	margin-top:4px;
+	color:#fff;
+	font-size:10px;
+	text-align: center;
+}
+/** Navigation menus **/
+.nav-menu {
+	width: 14em;
+}
+.nav-menu h3 {
+	font-weight:bold;
+	font-size:large;
+	color:#000000;
+	background-color:#87A5D8;
+	border:1px solid #133672;
+	line-height:23px;
+	padding-left: 10px;
+	margin: 0;
+	margin-top: 10px;
+}
+.nav-menu ul {
+	margin-top: 0.5em;
+	margin-bottom: 0.75em;
+}
+.nav-menu li {
+	line-height: 1.1em;
+	margin-bottom: 0.25em;
+}
+
+/** Styles for document display/viewing **/
+
+/* Document Header and Footer */
+.document table {
+	text-align: left;
+	border-spacing: 0;
+	border: thin solid #C3B67A;
+	padding: 0;
+	border-collapse: collapse;
+	margin-top: 18px;
+}
+table.document {
+	width: 100%;
+}
+.document .header td {
+	text-align:center;
+	background-color:#EBE0AB;
+}
+.document .header .status {
+	float:left;
+	margin-left:1em;
+}
+.document .header .id {
+	float:right;
+	margin-right:1em;
+}
+.document .logo table {
+	border:none;
+}
+.document .header {
+	background-color: #444444;
+}
+.document .logo_header .meta_data .doc_header_label {
+	font-weight: bold;
+	white-space: nowrap;
+	vertical-align: top;
+}
+.document .logo_header .meta_data .doc_header_value {
+	font-style: italic;
+	text-align: left;
+	padding-left: 5px;
+}
+.document .logo_header .meta_data .date {
+	text-align: right;
+}
+.document .logo_header td.logo {
+	width: 400px;
+}
+.document .logo_header .logo img {
+	width: 400px;
+	height: 200px;
+}
+.document .logo_header table.meta_data {
+	width: 300px;
+	margin-right: 1em;
+	border: none;
+}
+.document .doc_name {
+	border-top:1px solid #666;
+	border-bottom:1px solid #666;
+	text-align:center;
+}
+.document .approvals td,
+.document .attachments td,
+.document .applicability td {
+	border-top: 1px solid #C3B776;
+}
+.document .approvals > td {
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+.document .approvals .approval-signature-toggle {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.document .approvals table {
+	border-top: thin solid #EEEEEE;
+	border-left: none;
+	border-bottom: none;
+	border-right: none;
+	font-size: 14px;
+	white-space: nowrap;
+}
+.document .approvals table td {
+	border-top: thin solid #EEEEEE;
+	padding-right: 20px;
+	padding-top: 6px;
+	vertical-align: middle;
+}
+.document .approvals table td:first-child {
+	white-space: normal;
+}
+.document .meta-data-div {
+	padding-left: 20px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+}
+
+/* Document Body */
+.document_body {
+	font-size: medium;
+	margin-left:1em;
+	margin-right:1em;
+	margin-top: 0;
+	color: #000;
+}
+.document_body td {
+	border: thin solid #C3B67A;
+	empty-cells: show;
+	padding: 3px 5px;
+	vertical-align: top;
+}
+.document_body table td p {margin: 0;} /* CKEditor only */
+.document_body th {
+	border:thin solid #C3B67A;
+	text-align: center;
+}
+.document_body table th p {margin: 0;} /* CKEditor only */
+.document_body p {
+	font-size: medium;
+	margin-left: 1em;
+}
+.document_body a {
+	text-decoration: underline;
+}
+.document_body table.two_column td {
+	width: 50%;
+	vertical-align: top;
+}
+.document_body table.two_column {
+	width: 800px;
+}
+.document_body h1,
+.document_body h2,
+.document_body h3,
+.document_body h4,
+.document_body h5,
+.document_body h6 {
+	margin-left: 0;
+}
+.document_body ol li {
+	margin-top: .5em;
+}
+.document_body ol {
+	list-style-type:upper-alpha;
+}
+.document_body ol ol {
+	list-style-type:decimal;
+}
+.document_body ol ol ol {
+	list-style-type:lower-alpha;
+}
+.document_body ol ol ol ol {
+	list-style-type: lower-roman;
+}
+.document_body ol ol ol ol ol {
+	list-style-type: lower-alpha;
+}
+.document_body ol ol ol ol ol ol {
+	list-style-type: lower-roman;
+}
+.document_header,
+.document_footer {
+	font-size: 90%;
+	margin: 1em;
+}
+.document_body a.headerLink {
+	text-decoration: none;
+	font-size: 14px;
+	color: #777777;
+}
+
+/* Emulating bootstrap 2.3.2 typography */
+body .document_body {
+	font-size: 14px;
+	color: #333;
+}
+body .document_body p {
+	font-size: 14px;
+	margin: 10px 0;
+}
+body .document .header h1,
+body .document_body h1,
+body .document_body h2 {
+	font-size: 30px;
+	line-height: 32px;
+	margin: 10px 0;
+	text-rendering: optimizeLegibility;
+}
+
+body .document .header h1 {
+	margin: 0;
+}
+
+body .document_body h3 {
+	font-size: 26px;
+	line-height: 32px;
+	margin: 10px 0;
+	text-rendering: optimizeLegibility;
+}
+
+body .document_body h4 {
+	font-size: 22px;
+	line-height: 32px;
+	margin: 10px 0;
+	text-rendering: optimizeLegibility;
+}
+
+body .document_body h5 {
+	font-size: 18px;
+	line-height: 20px;
+	margin: 10px 0;
+	text-rendering: optimizeLegibility;
+}
+
+body .document_body h6 {
+	font-size: 14px;
+	line-height: 20px;
+	margin: 10px 0;
+	text-rendering: optimizeLegibility;
+}
+
+/* Inline Document Changes */
+.toggle_changes {
+	margin-left: 3em;
+}
+.document_changes {
+	display: none;
+}
+.document_title_changes {
+	display: none;
+}
+.document_body ins {
+	color: green;
+}
+.document_body del {
+	color: red;
+}
+.document_body ins,
+.document_body ins * {
+	text-decoration: underline;
+}
+.document_body del,
+.document_body del * {
+	text-decoration: line-through;
+}
+.document_body ins img {
+	border: 3px solid green;
+}
+.document_body del img {
+	border: 3px solid red;
+}
+.document_body li.del-li {
+	display: block;
+}
+
+/* Line/Section Numbering */
+.document_body p {
+	position: relative;
+}
+.section_number {
+	position: absolute;
+	top: 0px;
+	left: -3em;
+	color: #4F81BD;
+	font-family: courier, serif;
+	font-size: medium;
+	font-style: normal;
+	font-weight: normal;
+}
+a.toggle_numbers {
+	color: #4F81BD;
+}
+
+/** Home Page **/
+.policy_list ul {
+	list-style-type:none;
+}
+.revised,
+.next_review_date_pending,
+.expiring_now,
+.expiring_now a {
+	color: #836FDB;
+}
+.unchanged,
+.expiring_30,
+.expiring_30 a {
+	color: #2AA896;
+}
+.expiring_60,
+.expiring_60 a {
+	color: #A67215;
+}
+.expiring_90,
+.expiring_90 a {
+	color: #000000;
+}
+
+/** Pending Documents **/
+.pending_number_self {
+	color: #FF0000;
+}
+.pending_number_others {
+	color: #00DD00;
+}
+/** Cross-page layout **/
+#page_title {
+	margin:0;
+	margin-bottom:0.5em;
+	font-size:x-large;
+	color:#fff;
+	text-align:center;
+	background-color:#999;
+}
+body.bootstrap #page_title {
+	line-height: 28px;
+}
+.section_title,
+.section_title_strong {
+	margin: 10px 10px 0 10px;
+	font-size:large;
+	color:#000000;
+	text-align: left;
+	padding-left: 10px;
+	background-color:#FFCC70;
+	border:1px solid #A67215;
+	width:auto;
+}
+.section_title_strong {
+	background-color:#9A8CDB;
+	border:1px solid #261477;
+}
+.section_title_results {
+	margin:auto;
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size:large;
+	color:#000000;
+	text-align:center;
+	background-color:#d98a8a;
+	border:1px solid #9a3333;
+	width:auto;
+}
+.section_title a {
+	text-decoration:none;
+	color:#333333;
+}
+.section_title a:hover {
+	text-decoration:underline;
+	color:#000099;
+}
+.section_title_home {
+	margin:auto;
+	margin-top: 10px;
+	margin-bottom: 0;
+	font-size:large;
+	color:#000000;
+	text-align: left;
+	padding-left: 10px;
+	background-color:#FFCC70;
+	border:1px solid #A67215;
+	height:23px;
+	line-height:23px;
+}
+.section_title_home a {
+	color:#000000;
+}
+.section_title_home a:hover {
+	color:#0066FF;
+}
+#user_messages {
+	clear:both;
+	padding:5px;
+	margin:0;
+}
+#user_messages ul {
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+#user_messages li {
+	list-style:none;
+	font-size:large;
+	text-align:center;
+	margin-bottom:5px;
+	padding:0;
+	background-color: #DFF0D8;
+	border: 1px solid #D6E9C6;
+}
+
+.user_messages ul {
+	list-style:none;
+}
+
+/** Notification page **/
+div.notice {
+	margin:0;
+	padding:5px;
+	border-bottom:1px solid #CCC;
+}
+div.unseen_notice {
+	margin:0;
+	padding:5px;
+	background:#DFC;
+	border-bottom:1px solid #CCC;
+}
+h2.notice_date,h2.join_date,h2.creation_date {
+	font-size:12pt;
+	color:#666;
+	border-bottom:1px solid #999;
+}
+span.notice_type {
+	color:#666;
+}
+span.notice_message {
+}
+span.notice_time {
+	color:#999;
+	font-size:90%;
+}
+.notice_type_description {
+	font-size:85%;
+	font-style:italic;
+}
+#notification_toggle {
+	margin-left: 19em;
+	cursor: pointer;
+}
+
+/** Table styling **/
+/** A floating table with a border that expands with the browser to 90% **/
+table.user_reports {
+	width:50%;
+	margin: 1em auto;
+	border-collapse:collapse;
+	font-size: 14.5px;
+}
+table.user_reports th {
+	width: 30px;
+}
+table.user_reports td {
+	width: 20px;
+}
+
+/** Striped styling for user reports table **/
+table.user_reports_striped {
+	border-collapse:collapse;
+	border-width: 2px;
+	border-style: solid;
+}
+table.user_reports_striped td {
+	text-align: left;
+}
+table.user_reports_striped th {
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+}
+table.user_reports_striped th, table.user_reports_striped td {
+	border-left-width: 1px;
+	border-left-style: solid;
+	padding: .3em .3em 0 .3em;
+}
+table.user_reports_striped th.heading,
+table.user_reports_striped td.heading,
+table.user_reports_striped .heading th,
+table.user_reports_striped .heading td {
+	text-align:center;
+	font:bold 16.5px "Century Gothic","Trebuchet MS",sans-serif;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+}
+
+table.current {
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid;
+}
+
+table.current_inside {
+	border-collapse: collapse;
+	border-spacing: 0px;
+	padding: 0px;
+	border: 1px solid;
+	white-space: nowrap;
+}
+table.current_inside td {
+	padding: .3em .3em 0 .3em;
+}
+
+table.current_first_col {
+	width: 2000px;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	padding: 0px;
+	border: solid;
+}
+table.current_first_col td {
+	border: 1px solid;
+	padding: 0;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+table.floating {
+	width:90%;
+	margin: 1em auto;
+	border-collapse:collapse;
+	font-size: 15.5px;
+}
+table.floating caption {
+	font-size: 94%;
+	margin: 0;
+	padding:0;
+	caption-side:top;
+	text-align: center;
+}
+table.floating caption .num_results{
+	font-weight: bolder;
+}
+/* Striping for table rows/headers */
+table.striped {
+	border-collapse:collapse;
+	border-width: 1.5px;
+	border-style: solid;
+}
+table.striped td {
+	text-align: left;
+}
+table.striped .action_cell {
+	text-align: center;
+	font-weight: bold;
+	padding: 0 .3em 0 .3em;
+	border-bottom-style: none;
+}
+table.striped div.action_cell {
+	text-align: center;
+	font-weight: bold;
+	margin-right: -0.7em;
+}
+table.striped th {
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+}
+table.striped th, table.striped td {
+	border-left-width: 1px;
+	border-left-style: solid;
+	padding: .3em 1em 0 .3em;
+}
+table.striped th.heading,
+table.striped td.heading,
+table.striped .heading th,
+table.striped .heading td {
+	text-align:center;
+	font:bold 16.5px "Century Gothic","Trebuchet MS",sans-serif;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+}
+table.striped th.heading a,
+table.striped .heading th a {
+	color: black;
+}
+table.striped th a {
+	color: white;
+}
+table.striped td.numeric, table.striped td.date {
+	text-align: right;
+}
+table.striped tr.total_row td {
+	padding-top: 8px;
+	border-top: 2px solid #133672;
+	border-bottom: 2px solid #133672;
+	font-weight: bold;
+}
+table.striped div.date {
+	width: 100%;
+	text-align: right;
+}
+td.total {
+	font-weight: bold;
+}
+
+/** Sideways table (each row is a label and value ) **/
+table.sideways {
+	border-style: solid;
+}
+table.sideways th {
+	text-align: left;
+	border-style: solid;
+}
+table.sideways td {
+	text-align: right;
+	border-style: solid;
+	border-width: thin;
+}
+
+/** ThreadedComments styling **/
+ol.commentlist li {
+	margin-bottom: 1em
+}
+
+/** Pipe-separated list of links **/
+.links {
+	background-color: #CCCCCC;
+}
+.links h2 {
+	font-size: 16px;
+	background-color:#999999;
+	font-family:Arial,Helvetica,sans-serif;
+	font-weight:bold;
+	line-height:1.66em;
+	text-align: center;
+	margin-bottom: 0;
+}
+.links ul {
+	display: table;
+	margin: 0 auto;
+	padding: .5em;
+	text-align: center;
+}
+.links li {
+	list-style-type: none;
+	border-left: 1px solid black;
+	padding: 0 .35em 0 .35em;
+	margin: 0;
+	display: inline;
+}
+.links li:first-child {
+	border-left: 0 none;
+}
+
+/*
+Plugin Name: WP-Digg Style Paginator
+Plugin URI: http://www.mis-algoritmos.com/2007/09/09/wp-digg-style-pagination-plugin-v-10/
+Author: Victor De la Rocha
+Author URI: http://www.mis-algoritmos.com
+*/
+
+/*CSS Sabrosus style pagination*/
+body.policystat div.pagination {
+	padding:3px;
+	margin:3px;
+	margin-top: 13px;
+	text-align:center;
+}
+body.policystat div.pagination a {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid #9aafe5;
+	text-decoration: none;
+	color: #2e6ab1;
+}
+body.policystat div.pagination a:hover, div.pagination a:active {
+	border: 1px solid #2b66a5;
+	color: #000;
+	background-color: #FFFFE0; /* LightYellow */
+}
+body.policystat div.pagination span.current {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid navy;
+	font-weight: bold;
+	background-color: #2e6ab1;
+	color: #FFF;
+}
+body.policystat div.pagination span.disabled {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid #929292;
+	color: #929292;
+}
+
+/** START: WYMeditor styles
+
+All of these should also be in (minus the .document_body):
+/site_media/lib/wymeditor/wymeditor/iframe/pstat/wymiframe.css**/
+.document_body .underline {
+	text-decoration: underline;
+}
+.document_body .highlight {
+	background: yellow;
+	font-weight: bold;
+}
+.document_body .center {
+	display: block;
+	width: 95%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.document_body td.center,
+.document_body th.center {
+	display: table-cell;
+	width: auto;
+}
+
+.document_body table.fixed {
+	width: 780px;
+	table-layout: fixed;
+}
+
+/**
+    Using .document .document_body so that it's highly-specific and overrides
+    other values
+ **/
+.document .document_body ol.list-decimal {
+	list-style-type: decimal;
+}
+.document .document_body ol.list-lower-alpha {
+	list-style-type: lower-alpha;
+}
+.document .document_body ol.list-upper-alpha {
+	list-style-type: upper-alpha;
+}
+.document .document_body ol.list-lower-roman {
+	list-style-type: lower-roman;
+}
+.document .document_body ol.list-upper-roman {
+	list-style-type: upper-roman;
+}
+/** END: WYMeditor styles **/
+
+.doc_text_preview {
+	min-width: 16em;
+	font-size: 90%;
+}
+.attachments_list td {
+	border: none !important;
+	padding-left: 1em;
+}
+table.attachments_list {
+	border: none;
+}
+div.explanation {
+	width: 70%;
+	margin: auto;
+}
+.explanation p,
+.explanation h3 {
+	text-align: center;
+}
+
+#select_all_link.explanation {
+	text-align: left;
+	width: 100%;
+}
+div#select_all_link.explanation h3 {
+	color: black;
+	text-align: left;
+	font-size: 20px;
+	margin-bottom: 0em;
+	line-height: 20px;
+}
+div.explanation p.long_text {
+	text-align: left;
+}
+
+/* Print-only items */
+.print_only {
+	display: none;
+}
+
+/** Committee Review Search Results **/
+form.base_form fieldset .search_result,
+form.base_form fieldset .attach_result {
+	width: auto;
+	margin: auto;
+	margin-top: 0;
+	padding: 10px;
+}
+.search_result {
+	border-left:1px solid #9a3333;
+	border-right:1px solid #9a3333;
+	border-bottom:1px solid #9a3333;
+}
+.attach_result {
+	border-left:1px solid #c3b67a;
+	border-right:1px solid #c3b67a;
+	border-bottom:1px solid #c3b67a;
+}
+
+/** Document History **/
+#document_history ul.history_list {
+	list-style-type: none;
+	margin: 20px 20px 0 20px;
+	padding: 0;
+}
+#document_history .ajax_comment {
+	margin: 20px 20px 0 20px;
+}
+#document_history ul.history_list li {
+	margin: 0 0 20px 0;
+}
+#document_history .action_icon {
+	float: left;
+	height: 24px;
+	width: 24px;
+	vertical-align: bottom;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#document_history .description {
+	width: 60%;
+	float: left;
+}
+#document_history .date {
+	width: 30%;
+	float: right;
+	margin-top: 5px;
+	color: #999;
+	text-align: right;
+}
+#document_history hr {
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-bottom: 1px solid #999;
+	clear: both;
+	margin-bottom: 10px;
+}
+#document_history .comment p {
+	margin: 0 0 5px 0;
+}
+#document_history .comment hr {
+	margin: 10px auto 5px auto;
+	width: 70%;
+}
+#document_history div.edit_link {
+	float: right;
+	margin-top: 10px;
+	cursor: pointer;
+}
+#document_history .action_icon.internal-only {
+	color: #a67215;
+}
+#document_history .comment.internal-only {
+	padding: 1em;
+	background-color: #ffda96;
+	border-radius: 0.5em;
+	border: 1px solid #FFCC70;
+}
+#document_history .comment.internal-only p {
+	margin: 0;
+}
+
+/** Invisible hr to fix layout issues in ie6 **/
+hr.invisible {
+	color: white;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+/****************************/
+/* Unsorted */
+.error {
+	text-align:center;
+	color:red;
+}
+#main { /* wymeditor plugin something maybe? */
+	clear:both;
+	height:325px;
+	min-width:765px;
+	margin-left:0;
+}
+
+/** Video pop up stuff **/
+
+#video_popup_list {
+	overflow:scroll;
+	overflow-x:hidden;
+}
+
+#video_popup_list p.title,
+#video_popup_list p.description {
+	padding-left:130px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#video_popup_list p.description {
+	font-size:12px;
+	padding-left:140px;
+}
+
+table.bucket_totals {
+	margin-bottom: 0;
+}
+
+table.bucket_summary {
+	margin-top: 0;
+	border-top: none;
+}
+
+.file_chooser {
+	margin-bottom: 10px;
+}
+
+/** Implementation Process Diagram **/
+
+.implementation_process_flow {
+	margin: auto;
+	font-size: 13px;
+	margin-top: 3px;
+}
+.implementation_process_flow td {
+	padding: 0;
+}
+.implementation_process_flow td img {
+	vertical-align: bottom;
+}
+.implementation_process_flow td a,
+.implementation_process_flow td a:visited {
+	color: black;
+}
+.implementation_process_flow td div {
+	padding: 8px 6px;
+	text-decoration: none;
+}
+.implementation_process_flow td a div:hover {
+	color: #3966B0;
+}
+.implementation_process_flow td.current {
+	background-color: #87A5D8;
+	font-weight: bold;
+}
+.underline {
+	text-decoration: underline;
+}
+
+/** Identify Duplicate Imports page **/
+.icon_with_text {
+	text-decoration: none;
+}
+.icon_with_text img {
+	display: block;
+	margin: 3px auto 0 auto;
+}
+.icon_with_text div {
+	display: block;
+	margin: 0 auto 3px auto;
+	color: black;
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 110%;
+}
+.icon_with_text.disabled div {
+	color: gray;
+}
+#upload_attachments img.attachment_undo {
+	cursor: pointer;
+}
+#content.error_page div.message {
+	padding-top: 2em;
+	margin: 0 auto;
+	width: 30em;
+}
+#content.error_page img.sadface {
+	float: left;
+}
+#content.error_page div.inner {
+	color: #333;
+	font-size: 0.8em;
+	margin-left: 160px;
+	margin-top: 4em;
+	border: 1px solid gray;
+	border-radius: 1.5em;
+	padding: 0.5em;
+	padding-left: 1em;
+	background-color: #D3D3D3;
+}
+#content.error_page p.sorry {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+.clear {
+	clear: both;
+}
+.hidden {
+	display: none;
+}
+table.mock-spreadsheet td, table.mock-spreadsheet th {
+	border: 1px solid #CCC;
+	padding: 2px 10px;
+}
+table.mock-spreadsheet th {
+	background: #EEE;
+	text-align: center;
+	width: auto;
+}
+table.mock-spreadsheet td {
+	text-align: left;
+}
+
+#document_create_dialog div.create_from_scratch_div {
+	font-size: 1.5em;
+}
+input.create_from_scratch {
+	background-color: #3966B0;
+	border: 1px solid #133672;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline;
+	width: auto;
+}
+
+a.print_link.icon-print,
+a.email_link.icon-envelope-alt {
+	text-decoration:none;
+}
+
+.section {
+	text-align: left;
+}
+.section h1 {
+	border-bottom: 1px solid #EEE;
+	font-size: 1.5em;
+	margin-bottom: 0.5em;
+}
+
+.hide {
+	display: none;
+}
+
+.tab-content .document_info {
+	position: absolute;
+	right: 1em;
+}
+
+.tab-content .document_info div {
+	margin-left: 1em;
+}
+a.approval_reminder:hover {
+	text-decoration: none;
+}
+.needed_approver {
+	min-width: 9em;
+}
+
+.needed_approver ul {
+	margin-left: 1em;
+}
+.well form.center {
+	text-align: center;
+}
+
+div#points_overview td:not(:first-child) {
+	text-align: right;
+}
+
+div#points_report td:not(:first-child) {
+	text-align: right;
+}
+
+#loadingModal {
+	width: auto;
+	margin: -100px 0 0 -100px;
+}
+table td.numeric {
+	text-align: right;
+}
+.text-center .approval-flow-diagram {
+	display: inline-block;
+}
+.approval-flow-diagram {
+	position: relative;
+	padding-top: 1em;
+	padding-left: 1em;
+	margin-bottom: 1em;
+	border-radius: 5px;
+}
+#ie7 .approval-flow-diagram {
+	width: 98%;
+}
+.approval-flow-diagram .step .name {
+	font-weight: bold;
+}
+.approval-flow-diagram .step {
+	vertical-align: middle;
+	float: left;
+	margin-bottom: 1em;
+}
+.approval-flow-diagram .step.bordered {
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid black;
+	padding: 5px 8px;
+}
+.approval-flow-diagram .arrow {
+	font-size: 2em;
+	float: left;
+	margin-right: 0;
+	color: #000;
+}
+.approval-flow-diagram .step {
+	cursor: pointer;
+}
+.approval-flow-diagram .step.bordered.current {
+	border: 3px solid black;
+	background-color: #87A5D8;
+}
+.approval-flow-diagram .step.bordered.implicit-step {
+	border: 1px dashed black;
+	background-color: #f5f5f5;
+	color: #3955b0;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.approval-flow-diagram .step.bordered .document-owner {
+	color: #3955b0;
+	font-weight: bold;
+	font-style: italic;
+}
+
+#div_id_server_uri .accordion input {
+	width: 514px;
+}
+#div_id_server_uri .accordion {
+	width: 540px;
+	margin-top: 5px;
+}
+.rss_icon a:link,
+.rss_icon a:visited,
+.rss_icon a:hover {
+	text-decoration: none;
+}
+
+.remove-item:link,
+.remove-item:visited,
+.remove-item:hover {
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.remove-item:hover {
+	color: red;
+}
+
+.document-deleted {
+	text-decoration: line-through;
+}
+
+.large-text {
+	font-size: x-large;
+	font-weight: bold;
+}
+
+a.reference.external:after {
+	color: #b3b3b3;
+	content: " ";
+	font-family: FontAwesome;
+	font-size: 60%;
+	vertical-align: super;
+}
+
+#browser-nag {
+	/* Recreate some key elements so the
+     * non-bootstrapped pages will look the same */
+	margin: 10px 0px 20px 0px;
+	height: auto;
+	font-size: 14px;
+	line-height: 20px;
+	color: #b94a48;
+	background-color: #f2dede;
+	border: 1px solid #eed3d7;
+	padding: 8px 14px;
+	display: none;
+}
+
+#ie7 #browser-nag {
+	display: block;
+}
+
+.word-or-editor {
+	text-align: center;
+	font-size: 150%;
+	margin-bottom: 16px;
+}
+
+.word-buttons {
+	text-align: center;
+}
+
+input#access-link-field {
+	background-color: white;
+	cursor: text;
+}
+
+i.icon-ban-circle {
+	color: orange !important;
+	margin-right: 10px;
+}
