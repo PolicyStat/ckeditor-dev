@@ -77,8 +77,7 @@ Manual tests
 Updating plugins
 ================
 
-There are a few plugins in
-`site_media/lib/ckeditor-common/plugins <https://github.com/PolicyStat/PolicyStat/tree/master/site_media/lib/ckeditor-common/plugins>`_
+There are a few custom plugins.
 
 They are kept in separate repos and updated manually by coping:
 
@@ -90,7 +89,6 @@ They are kept in separate repos and updated manually by coping:
 * removenbsp
 * `structuredheadings <https://github.com/PolicyStat/ckeditor-plugin-structured-headings>`_
 
-These plugins packed together with CKEditor by symlinking during  update_ckeditor.py run.
 
 
 Feature Flags

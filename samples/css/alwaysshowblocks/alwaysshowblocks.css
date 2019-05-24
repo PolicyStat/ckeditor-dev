@@ -1,0 +1,75 @@
+
+.document .document_body address,
+.document .document_body blockquote,
+.document .document_body h1,
+.document .document_body h2,
+.document .document_body h3,
+.document .document_body h4,
+.document .document_body h5,
+.document .document_body h6,
+.document .document_body p,
+.document .document_body pre,
+.document .document_body ul,
+.document .document_body ol {
+    background-position: top left;
+    padding-left: 8px;
+    background-size: auto 15px;
+    background-repeat: no-repeat;
+    border: 1px dotted gray;
+    padding-top: 8px;
+}
+
+.document .document_body address {
+    background-image: url("images/block_address.png");
+}
+
+.document .document_body blockquote {
+    background-image: url("images/block_blockquote.png");
+}
+
+.document .document_body h1 {
+    background-image: url("images/block_h1.png");
+}
+
+.document .document_body h2 {
+    background-image: url("images/block_h2.png");
+}
+
+.document .document_body h3 {
+    background-image: url("images/block_h3.png");
+}
+
+.document .document_body h4 {
+    background-image: url("images/block_h4.png");
+}
+
+.document .document_body h5 {
+    background-image: url("images/block_h5.png");
+}
+
+.document .document_body h6 {
+    background-image: url("images/block_h6.png");
+}
+
+.document .document_body p {
+    background-image: url("images/block_p.png");
+}
+
+.document .document_body pre {
+    background-image: url("images/block_pre.png");
+}
+
+.document .document_body ol,
+.document .document_body ul {
+    border-left: 20px solid #B9C4D0;
+    padding: 0px 5px;
+}
+
+.document .document_body ol ol,
+.document .document_body ol ul,
+.document .document_body ul ol,
+.document .document_body ul ul {
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}

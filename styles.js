@@ -16,76 +16,76 @@
 // For more information refer to: http://docs.ckeditor.com/#!/guide/dev_styles-section-style-rules
 
 CKEDITOR.stylesSet.add( 'default', [
-    // begin PolicyStat styles
+	// begin PolicyStat styles
 
-    {
-        name: 'Highlight',
-        element: [
-            'address',
-            'div',
-            'h1',
-            'h2',
-            'h3',
-            'h4',
-            'h5',
-            'h6',
-            'p',
-            'pre',
-            'table',
-            'td',
-            'th'
-        ],
-        attributes: { 'class': 'highlight'}
-    },
-    {
-        name: 'Center',
-        element: [
-            'address',
-            'div',
-            'h1',
-            'h2',
-            'h3',
-            'h4',
-            'h5',
-            'h6',
-            'p',
-            'pre',
-            'table',
-            'td',
-            'th'
-        ],
-        attributes: {'class': 'center'}
-    },
-    {
-        name: 'Equally spaced table',
-        element: 'table',
-        attributes: {'class': 'fixed'}
-    },
-    {
-        name: 'List: A. B. C.',
-        element: 'ol',
-        attributes: {'class': 'list-upper-alpha'}
-    },
-    {
-        name: 'List: 1. 2. 3.',
-        element: 'ol',
-        attributes: {'class': 'list-decimal'}
-    },
-    {
-        name: 'List: a. b. c.',
-        element: 'ol',
-        attributes: {'class': 'list-lower-alpha'}
-    },
-    {
-        name: 'List: i. ii. iii.',
-        element: 'ol',
-        attributes: {'class': 'list-lower-roman'}
-    },
-    {
-        name: 'List: I. II. III.',
-        element: 'ol',
-        attributes: {'class': 'list-upper-roman'}
-    }
+	{
+		name: 'Highlight',
+		element: [
+			'address',
+			'div',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'p',
+			'pre',
+			'table',
+			'td',
+			'th'
+		],
+		attributes: { 'class': 'highlight' }
+	},
+	{
+		name: 'Center',
+		element: [
+			'address',
+			'div',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'p',
+			'pre',
+			'table',
+			'td',
+			'th'
+		],
+		attributes: { 'class': 'center' }
+	},
+	{
+		name: 'Equally spaced table',
+		element: 'table',
+		attributes: { 'class': 'fixed' }
+	},
+	{
+		name: 'List: A. B. C.',
+		element: 'ol',
+		attributes: { 'class': 'list-upper-alpha' }
+	},
+	{
+		name: 'List: 1. 2. 3.',
+		element: 'ol',
+		attributes: { 'class': 'list-decimal' }
+	},
+	{
+		name: 'List: a. b. c.',
+		element: 'ol',
+		attributes: { 'class': 'list-lower-alpha' }
+	},
+	{
+		name: 'List: i. ii. iii.',
+		element: 'ol',
+		attributes: { 'class': 'list-lower-roman' }
+	},
+	{
+		name: 'List: I. II. III.',
+		element: 'ol',
+		attributes: { 'class': 'list-upper-roman' }
+	}
 
 ] );
 
