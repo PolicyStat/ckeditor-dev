@@ -816,7 +816,7 @@
 
 					// Fix for PolicyState issue 4601
 					// Notes on what `value !== "clear"` fixes
-					// Somve this function called when we do `Clear Numbering` in PolicyStat fork
+					// This function called when we do `Clear Numbering` in PolicyStat fork
 					// reapplyStyle behaviour
 					// 1) Clear all styles
 					// 2) Reapply style passed in `value`
