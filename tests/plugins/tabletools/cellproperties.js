@@ -74,6 +74,7 @@
 				assert.areSame( '', dialog.getValueOf( 'info', 'rowSpan' ) );
 
 				dialog.setValueOf( 'info', 'width', 100 );
+				dialog.setValueOf( 'info', 'bgColor', 'red' );
 				dialog.setValueOf( 'info', 'hAlign', 'right' );
 			} );
 		},
@@ -102,8 +103,10 @@
 		'test load and update field values (#8)': function() {
 			this.doTest( 'table-9', function( dialog ) {
 				assert.areSame( '', dialog.getValueOf( 'info', 'cellType' ) );
+				assert.areSame( 'red', dialog.getValueOf( 'info', 'bgColor' ) );
 
 				dialog.setValueOf( 'info', 'cellType', 'td' );
+				dialog.setValueOf( 'info', 'bgColor', 'green' );
 			} );
 		},
 
