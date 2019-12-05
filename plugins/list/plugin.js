@@ -552,6 +552,7 @@
 			child.remove();
 
 			refNode ? child[ forward ? 'insertBefore' : 'insertAfter' ]( refNode ) : into.append( child, forward );
+			refNode = child;
 		}
 	}
 
