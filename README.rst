@@ -107,8 +107,25 @@ Since changing the editor is a pretty big deal, there are a number of feature fl
 
 Building a CKEditor Release
 ===========================
+First, you need to build a CKEditor release version.
+Clone this repo in a separate folder for release building.
+For instance, do this ``git clone git@github.com:PolicyStat/ckeditor-dev.git ckeditor-release``
 
-First, remove
+:warning: Strictly do not do ``npm install`` in the release folder.
+``npm install`` would install development dependencies and lock them in ``package-lock.json``.
+This leads to false alarms from ``github.com`` on the ``package-lock.json`` file.
+CKEditor itself prepares release to NPM from the different repo.
+Where `package.json <https://github.com/ckeditor/ckeditor4-releases/blob/master/package.json>`_ contains
+no dependencies.
+
+Enter the release folder and build release with command ``./dev/builder/build.sh``
+
+Unfortunately, CKBuilder does not support outputting source maps.
+
+For development, it may be worth running ``build.sh --leave-js-unminified``
+to output an unminified version for local debugging.
+
+To install latest CKEditor version into main ``PolicyStat``, remove
 ``site_media/lib/ckeditor``
 and rename
 ``site_media/lib/ckeditor-new``
@@ -120,14 +137,8 @@ is copied to
 ``site_media/lib/ckeditor-new``
 by the following process:
 
-* ``ckeditor-dev/dev/builder/build.sh``
 * ``./scripts/update_ckeditor.py --source ../ckeditor-dev/dev/builder/release/ckeditor``
   (the output directory of build.sh)
-
-Unfortunately, CKBuilder does not support outputting source maps.
-
-For development, it may be worth running ``build.sh --leave-js-unminified``
-to output an unminified version for local debugging.
 
 In the case when you want to bypass the version promotion process
 and update the feature-flag-off
