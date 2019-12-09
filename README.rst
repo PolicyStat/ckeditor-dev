@@ -113,7 +113,10 @@ For instance, do this ``git clone git@github.com:PolicyStat/ckeditor-dev.git cke
 
 :warning: Strictly do not do ``npm install`` in the release folder.
 ``npm install`` would install development dependencies and lock them in ``package-lock.json``.
-This leads to false alarms from ``github.com``
+This leads to false alarms from ``github.com`` on the ``package-lock.json`` file.
+CKEditor itself prepares release to NPM from the different repo.
+Where `package.json <https://github.com/ckeditor/ckeditor4-releases/blob/master/package.json>`_ contains
+no dependencies.
 
 Enter the release folder and build release with command ``./dev/builder/build.sh``
 
