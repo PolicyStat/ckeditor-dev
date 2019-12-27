@@ -1,13 +1,13 @@
 /**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 CKEDITOR.plugins.setLang( 'uicolor', 'sv', {
 	title: 'UI Färgväljare',
-	options: 'Color Options', // MISSING
-	highlight: 'Highlight', // MISSING
-	selected: 'Selected Color', // MISSING
+	options: 'Färgalternativ',
+	highlight: 'Markera',
+	selected: 'Vald färg',
 	predefined: 'Fördefinierade färguppsättningar',
 	config: 'Klistra in den här strängen i din config.js-fil'
 } );

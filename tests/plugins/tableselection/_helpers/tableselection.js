@@ -1,4 +1,4 @@
-/* exported tableSelectionHelpers, createPasteTestCase, doCommandTest */
+/* exported tableSelectionHelpers, createPasteTestCase, doCommandTest, mockMouseEventForCell, mockMouseSelection */
 
 ( function() {
 	'use strict';
@@ -36,30 +36,7 @@
 			for ( i = 0; i < ranges.length; i++ ) {
 				ranges[ i ]._getTableElement().addClass( addSelected ? 'selected' : 'cke_marked' );
 			}
-		},
-
-		/*
-		 * Modifies testSuite by adding entries in `_should.ignore` object for each method/property, if
-		 * the current environment is not supported.
-		 *
-		 * @param {Object} testSuite
-		 * @param {Boolean} [check] Custom check to be considered in addition to the default one.
-		 */
-		ignoreUnsupportedEnvironment: function( testSuite, check ) {
-			testSuite._should = testSuite._should || {};
-			testSuite._should.ignore = testSuite._should.ignore || {};
-
-			for ( var key in testSuite ) {
-				if ( ( typeof check !== 'undefined' && !check ) || !this.isSupportedEnvironment ) {
-					testSuite._should.ignore[ key ] = true;
-				}
-			}
-		},
-
-		/*
-		 * @property {Boolean} isSupportedEnvironment Whether table selection supports current environment.
-		 */
-		isSupportedEnvironment: !( CKEDITOR.env.ie && CKEDITOR.env.version < 11 )
+		}
 	};
 
 	function shrinkSelections( editor ) {
@@ -79,16 +56,17 @@
 	window.createPasteTestCase = function( fixtureId, pasteFixtureId ) {
 		return function( editor, bot ) {
 			bender.tools.testInputOut( fixtureId, function( source, expected ) {
-				editor.once( 'paste', function() {
+				editor.once( 'afterPaste', function() {
 					resume( function() {
 						shrinkSelections( editor );
 						bender.assert.beautified.html( expected, bender.tools.getHtmlWithSelection( editor ) );
 					} );
-				}, null, null, 1 );
+				}, null, null, 999 );
 
 				bot.setHtmlWithSelection( source );
 
-				bender.tools.emulatePaste( editor, CKEDITOR.document.getById( pasteFixtureId ).getOuterHtml() );
+				// Use clone, so that pasted table does not have an ID.
+				bender.tools.emulatePaste( editor, CKEDITOR.document.getById( pasteFixtureId ).clone( true ).getOuterHtml() );
 
 				wait();
 			} );
@@ -159,5 +137,63 @@
 				}
 			}
 		} );
+	};
+
+	/*
+	 * @param {CKEDITOR.editor} editor Editor's instance.
+	 * @param {String} type Event's type.
+	 * @param {CKEDITOR.dom.element} cell Cell that is a target of the event.
+	 * @param {Function} callback
+	 */
+	window.mockMouseEventForCell = function( editor, type, cell, callback ) {
+
+		var host = editor.editable().isInline() ? editor.editable() : editor.document,
+			event = {
+				getTarget: function() {
+					return cell;
+				},
+
+				preventDefault: function() {
+					// noop
+				},
+
+				$: {
+					button: 0,
+
+					// We need these because on build version magicline plugin
+					// also listen on 'mousemove'.
+					clientX: 0,
+					clientY: 0
+				}
+			};
+
+		host.once( type, function() {
+			resume( callback );
+		} );
+
+		host.fire( type, event );
+		wait();
+	};
+
+	/*
+	 * @param {CKEDITOR.editor} editor Editor's instance.
+	 * @param {Array} cells Cells that should be selected. The first one is used as mousedown target,
+	 * the last as mousemove and mouseup target, others as mousemove targets.
+	 * @param {Function} callback
+	 */
+	window.mockMouseSelection = function( editor, cells, callback ) {
+		function handler() {
+			var cell = cells.shift();
+
+			if ( cells.length > 0 ) {
+				window.mockMouseEventForCell( editor, 'mousemove', cell, handler );
+			} else {
+				window.mockMouseEventForCell( editor, 'mousemove', cell, function() {
+					window.mockMouseEventForCell( editor, 'mouseup', cell, callback );
+				} );
+			}
+		}
+
+		window.mockMouseEventForCell( editor, 'mousedown', cells.shift(), handler );
 	};
 } )();

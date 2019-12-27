@@ -1,6 +1,6 @@
 /**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 CKEDITOR.plugins.setLang( 'a11yhelp', 'ja', {
@@ -79,6 +79,11 @@ CKEDITOR.plugins.setLang( 'a11yhelp', 'ja', {
 			{
 			name: 'ユーザー補助ヘルプ',
 			legend: '${a11yHelp} をクリック'
+		},
+			{
+			name: ' Paste as plain text', // MISSING
+			legend: 'Press ${pastetext}', // MISSING
+			legendEdge: 'Press ${pastetext}, followed by ${paste}' // MISSING
 		}
 		]
 	}

@@ -1,12 +1,15 @@
-/* bender-tags: editor,unit */
+/* bender-tags: editor */
 
 CKEDITOR.replaceClass = 'ckeditor';
 bender.editor = true;
 
 var keyCombo1 = CKEDITOR.CTRL + 10,
 	keyCombo2 = CKEDITOR.ALT + 20,
+	keyCombo3 = CKEDITOR.SHIFT + CKEDITOR.ALT + 30,
 	command1 = 'command#1',
-	command2 = 'command#2';
+	command2 = 'command#2',
+	command3 = 'command#3WithCapitalLetters';
+
 
 bender.test(
 {
@@ -18,6 +21,42 @@ bender.test(
 		delete keystrokes[ keyCombo2 ];
 		delete commands[ command1 ];
 		delete commands[ command2 ];
+
+		this.editor.addCommand( 'command_with_keystrokes', {
+			exec: function() {}
+		} );
+
+		this.editor.addCommand( 'command_with_fake_keystrokes', {
+			exec: function() {},
+			fakeKeystroke: 77
+		} );
+
+		this.editor.setKeystroke( 75, 'command_with_keystrokes' );
+		this.editor.setKeystroke( 76, 'command_with_keystrokes' );
+
+		this.editor.addCommand( 'command_without_keystrokes', {
+			exec: function() {}
+		} );
+	},
+
+	'test getCommandKeystroke': function() {
+		assert.isNull( this.editor.getCommandKeystroke( 'command_without_keystrokes' ), 'Command without keystroke' );
+		assert.areEqual( 75, this.editor.getCommandKeystroke( 'command_with_keystrokes' ), 'Command with keystroke.' );
+	},
+
+	// (#2493)
+	'test getCommandKeystroke multiple keystrokes': function() {
+		arrayAssert.isEmpty( this.editor.getCommandKeystroke( 'command_without_keystrokes', true ), 'Command without keystrokes.' );
+		arrayAssert.itemsAreEqual( [ 75, 76 ], this.editor.getCommandKeystroke( 'command_with_keystrokes', true ), 'Command with keystrokes.' );
+	},
+
+	'test getCommandKeystroke in commands with fake keystrokes': function() {
+		assert.areSame( 77, this.editor.getCommandKeystroke( 'command_with_fake_keystrokes' ), 'Single keystroke result.' );
+
+		// (#2493)
+		var ret = this.editor.getCommandKeystroke( 'command_with_fake_keystrokes', true );
+		assert.isInstanceOf( Array, ret, 'Return type.' );
+		arrayAssert.itemsAreEqual( [ 77 ], ret, 'Multiple keystrokes result.' );
 	},
 
 	'test keystroke assignment': function() {
@@ -94,5 +133,26 @@ bender.test(
 	'test editor#getCommandKeystroke with empty name': function() {
 		var editor = this.editor;
 		assert.isNull( editor.getCommandKeystroke( '' ), 'Returned keystroke.' );
+	},
+
+	// #523
+	'test keystroke with capital letters': function() {
+		var editor = this.editor,
+			keystrokes = editor.keystrokeHandler.keystrokes,
+			keystroke;
+
+		editor.addCommand( command3, {} );
+		editor.setKeystroke( keyCombo3, command3 );
+
+		assert.areEqual( command3, keystrokes[ keyCombo3 ] );
+
+		// Get by command instance.
+		keystroke = editor.getCommandKeystroke( editor.getCommand( command3 ) );
+		assert.areEqual( keyCombo3, keystroke, 'Keystrokes should be equal (command).' );
+
+		// Get by command name.
+		keystroke = editor.getCommandKeystroke( command3 );
+		assert.areEqual( keyCombo3, keystroke, 'Keystrokes should be equal (command name).' );
 	}
+
 } );
