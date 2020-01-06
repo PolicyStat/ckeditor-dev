@@ -1,6 +1,6 @@
 ﻿/**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 /**
@@ -23,13 +23,9 @@
 		},
 
 		refresh: function( editor ) {
-			var showBlocksOnBlur = editor.config.showBlocksOnBlur || false;
 			if ( editor.document ) {
 				// Show blocks turns inactive after editor loses focus when in inline.
-				var showBlocks = (
-					this.state == CKEDITOR.TRISTATE_ON &&
-					( editor.elementMode != CKEDITOR.ELEMENT_MODE_INLINE || showBlocksOnBlur || editor.focusManager.hasFocus )
-				);
+				var showBlocks = ( this.state == CKEDITOR.TRISTATE_ON && ( editor.elementMode != CKEDITOR.ELEMENT_MODE_INLINE || editor.focusManager.hasFocus ) );
 
 				var funcName = showBlocks ? 'attachClass' : 'removeClass';
 				editor.editable()[ funcName ]( 'cke_show_blocks' );
@@ -39,22 +35,20 @@
 
 	CKEDITOR.plugins.add( 'showblocks', {
 		// jscs:disable maximumLineLength
-	        lang: 'af,ar,bg,bn,bs,ca,cs,cy,da,de,de-ch,el,en,en-au,en-ca,en-gb,eo,es,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,tt,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
+		lang: 'af,ar,az,bg,bn,bs,ca,cs,cy,da,de,de-ch,el,en,en-au,en-ca,en-gb,eo,es,es-mx,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,oc,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,tt,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
 		// jscs:enable maximumLineLength
 		icons: 'showblocks,showblocks-rtl', // %REMOVE_LINE_CORE%
 		hidpi: true, // %REMOVE_LINE_CORE%
-		addCss: function(tags) {
-			var defaultTags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ],
+		onLoad: function() {
+			var tags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ],
 				cssStd, cssImg, cssLtr, cssRtl,
 				path = CKEDITOR.getUrl( this.path ),
-				// #10884 don't apply showblocks styles to non-editable elements and chosen ones.
+				// https://dev.ckeditor.com/ticket/10884 don't apply showblocks styles to non-editable elements and chosen ones.
 				// IE8 does not support :not() pseudoclass, so we need to reset showblocks rather
 				// than 'prevent' its application. We do that by additional rules.
 				supportsNotPseudoclass = !( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ),
 				notDisabled = supportsNotPseudoclass ? ':not([contenteditable=false]):not(.cke_show_blocks_off)' : '',
 				tag, trailing;
-
-			tags = tags ? tags : defaultTags;
 
 			cssStd = cssImg = cssLtr = cssRtl = '';
 
@@ -64,13 +58,9 @@
 				cssStd += '.cke_show_blocks ' + tag + notDisabled + trailing;
 				cssLtr += '.cke_show_blocks.cke_contents_ltr ' + tag + notDisabled + trailing;
 				cssRtl += '.cke_show_blocks.cke_contents_rtl ' + tag + notDisabled + trailing;
-
-				// CKEditor only includes label images for the default tags
-				if (defaultTags.indexOf(tag) !== -1) {
-					cssImg += '.cke_show_blocks ' + tag + notDisabled + '{' +
-						'background-image:url(' + CKEDITOR.getUrl(path + 'images/block_' + tag + '.png') + ')' +
-						'}';
-				}
+				cssImg += '.cke_show_blocks ' + tag + notDisabled + '{' +
+					'background-image:url(' + CKEDITOR.getUrl( path + 'images/block_' + tag + '.png' ) + ')' +
+				'}';
 			}
 
 			// .cke_show_blocks p { ... }
@@ -92,11 +82,10 @@
 				'padding-right:8px' +
 			'}';
 
-			// this may not work properly if multiple editors are on one page.
 			CKEDITOR.addCss( cssStd.concat( cssImg, cssLtr, cssRtl ) );
 
 			// [IE8] Reset showblocks styles for non-editables and chosen elements, because
-			// it could not be done using :not() pseudoclass (#10884).
+			// it could not be done using :not() pseudoclass (https://dev.ckeditor.com/ticket/10884).
 			if ( !supportsNotPseudoclass ) {
 				CKEDITOR.addCss(
 					'.cke_show_blocks [contenteditable=false],.cke_show_blocks .cke_show_blocks_off{' +
@@ -150,20 +139,9 @@
 			function onFocusBlur() {
 				command.refresh( editor );
 			}
-
-			this.addCss(editor.config.showBlocksTags);
 		}
 	} );
 } )();
-
-/**
- * Whether to continue showing the blocks on blur (inline only)
- *
- *		config.showBlocksOnBlur = false;
- *
- * @cfg {Boolean} [showBlocksOnBlur=false]
- * @member CKEDITOR.config
- */
 
 /**
  * Whether to automaticaly enable the show block" command when the editor loads.
@@ -171,14 +149,5 @@
  *		config.startupOutlineBlocks = true;
  *
  * @cfg {Boolean} [startupOutlineBlocks=false]
- * @member CKEDITOR.config
- */
-
-/**
- * Which tags the show blocks plugin will outline.
- *
- *		config.showBlocksTags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
- *
- * @cfg {Boolean} [showBlocksTags=[ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]]
  * @member CKEDITOR.config
  */

@@ -1,6 +1,6 @@
 ﻿/**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 /**
@@ -28,8 +28,9 @@ var CKBUILDER_CONFIG = {
 	skin: 'flat',
 	preset: 'full',
 	ignore: [
-		'.bender',
 		'bender.js',
+		'bender.ci.js',
+		'.bender',
 		'bender-err.log',
 		'bender-out.log',
 		'dev',
@@ -50,59 +51,78 @@ var CKBUILDER_CONFIG = {
 		'tests'
 	],
 	plugins: {
-		'a11yhelp': 0,
-		'autogrow': 0,
-		'autolink': 1,
-		'basicstyles': 1,
-		'blockquote': 1,
-		'clipboard': 1,
-		'contextmenu': 1,
-		'dialogadvtab': 1,
-		'elementspath': 1,
-		'enterkey': 0,
-		'entities': 1,
-		'find': 1,
-		'firefoxfixer': 1,
-		'floatingspace': 1,
-		'format': 1,
-		'horizontalrule': 1,
-		'image': 1,
-		'indentblock': 1,
-		'indentlist': 1,
-		'insertpre': 1,
-		'justify': 1,
-		'link': 1,
-		'list': 1,
-		'liststyle': 1,
-		'magicline': 1,
-		'pagebreak': 1,
-		'pastefromword': 1,
-		'pastetext': 1,
-		'preview': 1,
-		'print': 1,
-		'pstatenterkey': 1,
-		'removeformat': 1,
-		'save': 1,
-		'scayt': 0,
-		'selectall': 1,
-		'showblocks': 1,
-		'showborders': 1,
-		'smiley': 0,
-		'sourcearea': 1,
-		'sourcedialog': 1,
-		'specialchar': 1,
-		'stylescombo': 1,
-		'stylesheetparser': 1,
-		'tab': 1,
-		'table': 1,
-		'tableresize': 1,
-		'tabletools': 1,
-		'toolbar': 1,
-		'undo': 1,
-		'wsc': 0,
-		'wysiwygarea': 1
+		a11yhelp: 0,
+	  	about: 1, /* added on upgrade */
+  		autogrow: 0, /* missing on upgrade */
+		autolink: 1, /* missing on upgrade */
+		basicstyles: 1,
+		bidi: 1, /* added on upgrade */
+		blockquote: 1,
+		clipboard: 1,
+		colorbutton: 1, /* added on upgrade */
+		colordialog: 1, /* added on upgrade */
+		copyformatting: 1, /* added on upgrade */
+		contextmenu: 1,
+		dialogadvtab: 1,
+		div: 1, /* added on upgrade */
+		elementspath: 1,
+		enterkey: 0, /* missing on upgrade */
+		entities: 1,
+		filebrowser: 1, /* added on upgrade */
+		find: 1,
+	    firefoxfixer: 1, /* missing on upgrade */
+		flash: 1, /* added on upgrade */
+		floatingspace: 1,
+		font: 1, /* added on upgrade */
+		format: 1,
+		forms: 1, /* added on upgrade */
+		horizontalrule: 1,
+		htmlwriter: 1, /* added on upgrade */
+		iframe: 1, /* added on upgrade */
+		image: 1,
+		indentlist: 1,
+		indentblock: 1,
+	    insertpre: 1, /* missing on upgrade */
+		justify: 1,
+		language: 1, /* added on upgrade */
+		link: 1,
+		list: 1,
+		liststyle: 1,
+		magicline: 1,
+		maximize: 1, /* added on upgrade */
+		newpage: 1, /* added on upgrade */
+		pagebreak: 1,
+		pastefromword: 1,
+		pastetext: 1,
+		preview: 1,
+		print: 1,
+	    pstatenterkey: 1, /* missing on upgrade */
+		removeformat: 1,
+		resize: 1, /* added on upgrade */
+		save: 1,
+	    scayt: 0, /* missing on upgrade */
+		selectall: 1,
+		showblocks: 1,
+		showborders: 1,
+		smiley: 1,
+		sourcearea: 1,
+	    sourcedialog: 1, /* missing on upgrade */
+		specialchar: 1,
+		stylescombo: 1,
+	    stylesheetparser: 1, /* missing on upgrade */
+		tab: 1,
+		table: 1,
+		tableselection: 1, /* added on upgrade */
+	    tableresize: 1, /* missing on upgrade */
+		tabletools: 1,
+		templates: 1, /* added on upgrade */
+		toolbar: 1,
+		undo: 1,
+		uploadimage: 1, /* added on upgrade */
+	  	wsc: 0, /* missing on upgrade */
+		wysiwygarea: 1
 	},
-	languages: {
-		'en': 1
+    languages: {
+	    en: 1
 	}
 };
