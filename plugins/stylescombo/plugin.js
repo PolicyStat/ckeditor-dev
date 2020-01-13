@@ -6,6 +6,30 @@
 ( function() {
 	'use strict';
 
+	function getCutOffIndex(elements, tagNames) {
+		// given an array of elements and an array of tag names to stop on,
+		// returns the earliest index of any of the tag names, or -1
+
+		var minIndexes = {},
+			cutOffIndexes = [];
+
+		for (var i = elements.length - 1; i >= 0; --i) {
+			minIndexes[elements[i].getName()] = i;
+		}
+
+		tagNames.forEach(function(tagName, _, __) {
+			if (minIndexes[tagName] !== undefined) {
+				cutOffIndexes.push(minIndexes[tagName]);
+			}
+		});
+
+		if (cutOffIndexes.length !== 0) {
+			return Math.min.apply(null, cutOffIndexes);
+		} else {
+			return -1;
+		}
+	}
+
 	CKEDITOR.plugins.add( 'stylescombo', {
 		requires: 'richcombo',
 		// jscs:disable maximumLineLength
@@ -102,6 +126,12 @@
 					var style = styles[ value ],
 						elementPath = editor.elementPath();
 
+					var cutoff = getCutOffIndex( elementPath.elements, [ 'ol', 'ul' ] );
+					if ( cutoff !== -1 ) {
+						// trim the path to only the list item and parent.
+						elementPath.elements = elementPath.elements.slice( 0, 1 + cutoff );
+					}
+
 					// When more then one style from the same group is active ( which is not ok ),
 					// remove all other styles from this group and apply selected style.
 					if ( style.group && style.removeStylesFromSameGroup( editor ) ) {
@@ -117,10 +147,17 @@
 					editor.on( 'selectionChange', function( ev ) {
 						var currentValue = this.getValue(),
 							elementPath = ev.data.path,
-							elements = elementPath.elements;
+							elements = elementPath.elements,
+							pathDepth = elements.length;
+
+						var cutOffIndex = getCutOffIndex( elements, [ 'ol', 'ul' ] );
+
+						if ( cutOffIndex !== -1 ) {
+							pathDepth = 1 + cutOffIndex;
+						}
 
 						// For each element into the elements path.
-						for ( var i = 0, count = elements.length, element; i < count; i++ ) {
+						for ( var i = 0, count = pathDepth, element; i < count; i++ ) {
 							element = elements[ i ];
 
 							// Check if the element is removable by any of
@@ -146,6 +183,12 @@
 						element = selection.getSelectedElement() || selection.getStartElement() || editor.editable(),
 						elementPath = editor.elementPath( element ),
 						counter = [ 0, 0, 0, 0 ];
+
+					var cutoff = getCutOffIndex( elementPath.elements, ['ol', 'ul'] );
+					if ( cutoff !== -1 ) {
+						// trim the path to only the list item and parent.
+						elementPath.elements = elementPath.elements.slice(0, 1+cutoff);
+					}
 
 					this.showAll();
 					this.unmarkAll();

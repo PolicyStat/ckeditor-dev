@@ -23,9 +23,13 @@
 		},
 
 		refresh: function( editor ) {
+			var showBlocksOnBlur = editor.config.showBlocksOnBlur || false;
 			if ( editor.document ) {
 				// Show blocks turns inactive after editor loses focus when in inline.
-				var showBlocks = ( this.state == CKEDITOR.TRISTATE_ON && ( editor.elementMode != CKEDITOR.ELEMENT_MODE_INLINE || editor.focusManager.hasFocus ) );
+				var showBlocks = (
+					this.state == CKEDITOR.TRISTATE_ON &&
+					( editor.elementMode != CKEDITOR.ELEMENT_MODE_INLINE || showBlocksOnBlur || editor.focusManager.hasFocus )
+				);
 
 				var funcName = showBlocks ? 'attachClass' : 'removeClass';
 				editor.editable()[ funcName ]( 'cke_show_blocks' );
@@ -39,8 +43,8 @@
 		// jscs:enable maximumLineLength
 		icons: 'showblocks,showblocks-rtl', // %REMOVE_LINE_CORE%
 		hidpi: true, // %REMOVE_LINE_CORE%
-		onLoad: function() {
-			var tags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ],
+		addCss: function(tags) {
+			var defaultTags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ],
 				cssStd, cssImg, cssLtr, cssRtl,
 				path = CKEDITOR.getUrl( this.path ),
 				// https://dev.ckeditor.com/ticket/10884 don't apply showblocks styles to non-editable elements and chosen ones.
@@ -50,6 +54,8 @@
 				notDisabled = supportsNotPseudoclass ? ':not([contenteditable=false]):not(.cke_show_blocks_off)' : '',
 				tag, trailing;
 
+			tags = tags ? tags : defaultTags;
+
 			cssStd = cssImg = cssLtr = cssRtl = '';
 
 			while ( ( tag = tags.pop() ) ) {
@@ -58,9 +64,13 @@
 				cssStd += '.cke_show_blocks ' + tag + notDisabled + trailing;
 				cssLtr += '.cke_show_blocks.cke_contents_ltr ' + tag + notDisabled + trailing;
 				cssRtl += '.cke_show_blocks.cke_contents_rtl ' + tag + notDisabled + trailing;
-				cssImg += '.cke_show_blocks ' + tag + notDisabled + '{' +
-					'background-image:url(' + CKEDITOR.getUrl( path + 'images/block_' + tag + '.png' ) + ')' +
-				'}';
+
+				// CKEditor only includes label images for the default tags
+				if (defaultTags.indexOf(tag) !== -1) {
+					cssImg += '.cke_show_blocks ' + tag + notDisabled + '{' +
+						'background-image:url(' + CKEDITOR.getUrl(path + 'images/block_' + tag + '.png') + ')' +
+					'}';
+				}
 			}
 
 			// .cke_show_blocks p { ... }
@@ -82,6 +92,7 @@
 				'padding-right:8px' +
 			'}';
 
+			// this may not work properly if multiple editors are on one page.
 			CKEDITOR.addCss( cssStd.concat( cssImg, cssLtr, cssRtl ) );
 
 			// [IE8] Reset showblocks styles for non-editables and chosen elements, because
@@ -139,9 +150,20 @@
 			function onFocusBlur() {
 				command.refresh( editor );
 			}
+
+			this.addCss(editor.config.showBlocksTags);
 		}
 	} );
 } )();
+
+/**
+ * Whether to continue showing the blocks on blur (inline only)
+ *
+ *		config.showBlocksOnBlur = false;
+ *
+ * @cfg {Boolean} [showBlocksOnBlur=false]
+ * @member CKEDITOR.config
+ */
 
 /**
  * Whether to automaticaly enable the show block" command when the editor loads.
@@ -149,5 +171,14 @@
  *		config.startupOutlineBlocks = true;
  *
  * @cfg {Boolean} [startupOutlineBlocks=false]
+ * @member CKEDITOR.config
+ */
+
+/**
+ * Which tags the show blocks plugin will outline.
+ *
+ *		config.showBlocksTags = [ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ];
+ *
+ * @cfg {Boolean} [showBlocksTags=[ 'p', 'div', 'pre', 'address', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]]
  * @member CKEDITOR.config
  */
