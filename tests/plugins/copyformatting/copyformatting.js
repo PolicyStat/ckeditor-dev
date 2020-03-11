@@ -119,6 +119,34 @@
 			assert.areSame( fixHtml( expectedContent ), fixHtml( bender.tools.selection.getWithHtml( editor ) ) );
 		},
 
+		// https://dev.ckeditor.com/ticket/16675
+		'test applying styles from one cell to another': function( editor ) {
+			var inputContent = CKEDITOR.document.findOne( '#t-16675 .input' ).getHtml(),
+				rng,
+				cell,
+				cellTextNode;
+
+			bender.tools.selection.setWithHtml( editor, inputContent );
+
+			editor.execCommand( 'copyFormatting' );
+
+			// Move the selection to Q in the second cell.
+			rng = editor.createRange();
+			cellTextNode = editor.editable().find( 'td' ).getItem( 1 ).findOne( 'span span' ).getFirst();
+
+			rng.setStart( cellTextNode, 1 );
+			rng.setEnd( cellTextNode, 1 );
+			editor.getSelection().selectRanges( [ rng ] );
+
+			editor.execCommand( 'applyFormatting' );
+
+			// According to the differences in browsers, we just check if the last cell doesn't have
+			// background color applied.
+			cell = editor.editable().find( 'td' ).getItem( 2 );
+
+			assert.areSame( '', cell.getStyle( 'background-color' ) );
+		},
+
 		'test changing list type': function( editor ) {
 			var inputContent = CKEDITOR.document.findOne( '#list_type .input' ).getHtml(),
 				expectedContent = CKEDITOR.document.findOne( '#list_type .expected' ).getHtml();
@@ -407,6 +435,18 @@
 			assertScreenReaderNotification( editor, 'failed' );
 		},
 
+		'test premature paste formatting keystroke': function( editor ) {
+			var prevent = sinon.spy(),
+				keystroke = CKEDITOR.CTRL + CKEDITOR.SHIFT + 77;
+
+			editor.editable().fire( 'keydown', new CKEDITOR.dom.event( {
+				keyCode: keystroke,
+				preventDefault: prevent
+			} ) );
+
+			assert.isFalse( prevent.called );
+		},
+
 		'test notifications': function( editor ) {
 			var copyformatting = CKEDITOR.plugins.copyformatting;
 
@@ -461,7 +501,7 @@
 		}
 	};
 
-	tests = bender.tools.createTestsForEditors( CKEDITOR.tools.objectKeys( bender.editors ), tests );
+	tests = bender.tools.createTestsForEditors( CKEDITOR.tools.object.keys( bender.editors ), tests );
 
 	bender.test( tests );
 }() );
