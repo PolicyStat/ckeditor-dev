@@ -108,7 +108,7 @@ CKEDITOR.editorConfig = function ( config ) {
 			attributes: 'align,longdesc,frameborder,height,name,scrolling,src,title,width'
 		},
 		img: {
-			attributes: 'src,alt,width,height'
+			attributes: 'src,alt,title,width,height'
 		},
 		'address div h1 h2 h3 h4 h5 h6 p pre sub sup em strong': {
 			classes: 'highlight',
