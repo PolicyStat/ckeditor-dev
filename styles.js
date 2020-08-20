@@ -1,6 +1,6 @@
 /**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 // This file contains style definitions that can be used by CKEditor plugins.
@@ -13,7 +13,7 @@
 // ignore it. Otherwise it is strongly recommended to customize this file to match your
 // website requirements and design properly.
 //
-// For more information refer to: http://docs.ckeditor.com/#!/guide/dev_styles-section-style-rules
+// For more information refer to: https://ckeditor.com/docs/ckeditor4/latest/guide/dev_styles.html#style-rules
 
 CKEDITOR.stylesSet.add( 'default', [
 	// begin PolicyStat styles
