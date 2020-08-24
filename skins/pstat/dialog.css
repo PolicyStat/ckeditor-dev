@@ -285,7 +285,7 @@ div.cke_disabled .cke_dialog_ui_labeled_content div * {
     padding-right: 0
 }
 
-.cke_hc div.cke_dialog_ui_input_text, .cke_hc div.cke_dialog_ui_input_password, .cke_hc div.cke_dialog_ui_input_textarea, .cke_hc div.cke_dialog_ui_input_select, .cke_hc div.cke_dialog_ui_input_file {
+.cke_hc div.cke_dialog_ui_input_text, .cke_hc div.cke_dialog_ui_input_password, .cke_hc div.cke_dialog_ui_input_tel, .cke_hc div.cke_dialog_ui_input_textarea, .cke_hc div.cke_dialog_ui_input_select, .cke_hc div.cke_dialog_ui_input_file {
     border: 1px solid
 }
 
@@ -294,7 +294,7 @@ textarea.cke_dialog_ui_input_textarea {
     resize: none
 }
 
-input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, textarea.cke_dialog_ui_input_textarea {
+input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, input.cke_dialog_ui_input_tel, textarea.cke_dialog_ui_input_textarea {
     background-color: #fff;
     border: 1px solid #c9cccf;
     border-top-color: #aeb3b9;
@@ -313,12 +313,12 @@ input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, textarea.cke
     box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset
 }
 
-input.cke_dialog_ui_input_text:hover, input.cke_dialog_ui_input_password:hover, textarea.cke_dialog_ui_input_textarea:hover {
+input.cke_dialog_ui_input_text:hover, input.cke_dialog_ui_input_password:hover, input.cke_dialog_ui_input_tel:hover, textarea.cke_dialog_ui_input_textarea:hover {
     border: 1px solid #aeb3b9;
     border-top-color: #a0a6ad
 }
 
-input.cke_dialog_ui_input_text:focus, input.cke_dialog_ui_input_password:focus, textarea.cke_dialog_ui_input_textarea:focus, select.cke_dialog_ui_input_select:focus {
+input.cke_dialog_ui_input_text:focus, input.cke_dialog_ui_input_password:focus, input.cke_dialog_ui_input_tel:focus, textarea.cke_dialog_ui_input_textarea:focus, select.cke_dialog_ui_input_select:focus {
     outline: 0;
     border: 1px solid #139ff7;
     border-top-color: #1392e9

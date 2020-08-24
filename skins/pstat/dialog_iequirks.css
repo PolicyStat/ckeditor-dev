@@ -4,11 +4,11 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 */
 @import url("dialog.css");
 
-.cke_rtl input.cke_dialog_ui_input_text, .cke_rtl input.cke_dialog_ui_input_password {
+.cke_rtl input.cke_dialog_ui_input_text, .cke_rtl input.cke_dialog_ui_input_password, .cke_rtl input.cke_dialog_ui_input_tel {
     padding-right: 2px
 }
 
-.cke_rtl div.cke_dialog_ui_input_text, .cke_rtl div.cke_dialog_ui_input_password {
+.cke_rtl div.cke_dialog_ui_input_text, .cke_rtl div.cke_dialog_ui_input_password, .cke_rtl div.cke_dialog_ui_input_tel {
     padding-left: 2px
 }
 
@@ -24,7 +24,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 
-.cke_hc div.cke_dialog_ui_input_text, .cke_hc div.cke_dialog_ui_input_password, .cke_hc div.cke_dialog_ui_input_textarea, .cke_hc div.cke_dialog_ui_input_select, .cke_hc div.cke_dialog_ui_input_file {
+.cke_hc div.cke_dialog_ui_input_text, .cke_hc div.cke_dialog_ui_input_password, .cke_hc div.cke_dialog_ui_input_tel, .cke_hc div.cke_dialog_ui_input_textarea, .cke_hc div.cke_dialog_ui_input_select, .cke_hc div.cke_dialog_ui_input_file {
     border: 0
 }
 
