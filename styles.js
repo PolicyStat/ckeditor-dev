@@ -72,6 +72,11 @@ CKEDITOR.stylesSet.add( 'default', [
 		attributes: { 'class': 'list-decimal' }
 	},
 	{
+		name: 'List: 1. 1. 1.',
+		element: 'ol',
+		attributes: { 'class': 'list-decimal-point' }
+	},
+	{
 		name: 'List: a. b. c.',
 		element: 'ol',
 		attributes: { 'class': 'list-lower-alpha' }
